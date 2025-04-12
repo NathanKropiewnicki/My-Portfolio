@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="clips.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+  <title>My Portfolio</title>
+</head>
+<body>
+  <script src="glow.js"></script>
+  <script src="clips.js"></script>
+
+  <nav class="nav">
+    <a href="main.html"><img src="Icons/home.svg" />Home</a>
+    <a href="about.html"><img src="Icons/about.svg" />About</a>
+    <a href="projects.html"><img src="Icons/projects.svg" />Projects</a>
+    <a href="contact.html"><img src="Icons/contact.svg" />Contact</a>
+    <a href="photos.html"><img src="Icons/photos.svg" />Photos</a>
+    <a href="clips.html"><img src="Icons/photos.svg" />Esports</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero fade-in">
+    <h1>Nathan Kropiewnicki — Esports Career</h1>
+    <p>Valorant | Bethel Pilots Esports</p>
+    <p><strong>Discord:</strong><a href="https://discord.com/users/400470063658041344" target="_blank">  Tkrop</a></p>
+  </section>
+
+  <!-- Achievements -->
+  <section class="achievements fade-in2">
+    <h2>🏆 Achievements</h2>
+    <ul>
+        <li>Team Captain – Bethel University Pilots Valorant</li>
+        <li>Highest KDA on team (2022 Spring Season),(2023 Fall Season), (2025 Spring Season)</li>
+        <li>2nd place ECAC Rivals Division Fall 2023</li>
+        <li>First team all WHAC Spring 2025</li>
+    </ul>
+  </section>
+
+  <!-- Photos -->
+  <section class="photos fade-in">
+    <h2>📸 Team Photos</h2>
+    <div class="photo-gallery">
+      <img src="Images/whac.jpg" alt="First team all WHAC" />
+      <img src="Images/lan.jpg" alt="LAN Game" />
+      <img src="Images/glec.jpg" alt="GLEC Playoffs" />
+      <img src="Images/ecac.jpg" alt="2nd place ECAC" />
+    </div>
+  </section>
+
+  <!-- Clips -->
+  <section class="clips fade-in2">
+    <h2>🎥 Highlight Clips</h2>
+    <div class="gallery">
+      <div class="video-item" onclick="openLightbox('Clips/clip1.mp4')"><video src="Clips/clip1.mp4" muted></video></div>
+      <div class="video-item" onclick="openLightbox('Clips/clip2.mp4')"><video src="Clips/clip2.mp4" muted></video></div>
+      <div class="video-item" onclick="openLightbox('Clips/clip3.mp4')"><video src="Clips/clip3.mp4" muted></video></div>
+      <div class="video-item" onclick="openLightbox('Clips/clip4.mp4')"><video src="Clips/clip4.mp4" muted></video></div>
+      <div class="video-item" onclick="openLightbox('Clips/clip5.mp4')"><video src="Clips/clip5.mp4" muted></video></div>
+      <div class="video-item" onclick="openLightbox('Clips/clip6.mp4')"><video src="Clips/clip6.mp4" muted></video></div>
+    </div>
+  </section>
+
+  <!-- Links -->
+  <section class="links fade-in">
+    <h2>🔗 Connect</h2>
+    <a class="btn" href="https://bupilots.com/sports/esports" target="_blank">Visit Bethel Pilots</a>
+    <a class="btn" href="https://bupilots.com/sb_output.aspx?form=20" target="_blank">Recruit Me</a>
+    <a class="btn" href="https://discord.gg/JTduzMD9hy" target="_blank">Join Our Discord</a>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <video id="lightboxVideo" controls autoplay>
+      <source id="lightboxSource" src="" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</body>
+</html>
