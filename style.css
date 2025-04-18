@@ -130,24 +130,25 @@ nav a:hover {
     filter: invert(200%) sepia(10%) hue-rotate(120deg);
 }
 .btn {
-    display: inline-block;
-    padding: 12px 40px;
-    font-size: 1.2rem;
-    color: white;
-    background: cyan;
-    border-radius: 300px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    z-index: 0;
-    position: relative;
-    cursor: pointer;
-    color: #FFF;
-    outline: none;
-    border: none;
-    margin-top: 20px;
-    text-align: center;
+  position: relative;
+  display: inline-block;
+  padding: 12px 40px;
+  font-size: 1.2rem;
+  color: white;
+  background: cyan;
+  border-radius: 300px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin-top: 20px;
+  text-align: center;
+  z-index: 0;
+  overflow: hidden; /* ✅ THIS FIXES THE RECTANGLE ARTIFACT */
 }
+
 .btn::after {
     content: "";
     z-index: -1;
