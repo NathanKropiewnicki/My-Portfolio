@@ -1,7 +1,22 @@
+* {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    max-width: 100vw;
+  }
 body {
     font-family: 'JetBrains Mono', monospace;
     background-color: #0c0c0c;
 }
+.nav-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
 #glow {
     position: absolute;
     width: 300px;
@@ -30,24 +45,32 @@ nav {
     background-color: transparent;
     border: 2px solid white;
     border-radius: 15px;
-    width: fit-content;
-    margin: auto;
-}
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto 0 auto;
+    box-sizing: border-box;
+  }
 nav a {
+    display: inline-block;
+    padding: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-sizing: border-box;
+    text-decoration: None;
     color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
+    border-radius: 10px;
 }
-nav img {
-    width: 13px;
+nav a img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    vertical-align: middle;
     filter: invert(100%) sepia(90%) hue-rotate(120deg);
-    padding-right: 5px;
-}
+  }
 nav a:hover {
     background-color: gray;
     border-radius: 10px;
-    padding: 4px;
+    /* no padding added here */
+    transform: scale(1.05); /* optional for a slight effect */
 }
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
@@ -148,11 +171,25 @@ nav a:hover {
     opacity: 1;
 }
 .fade-in {
-    width: 100%; 
     opacity: 0;
-    transform: translateY(20px); /* Slight move-up effect */
-    animation: fadeInAnimation 1s ease-out forwards;
-}
+    visibility: hidden;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+      visibility: hidden;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
 .fade-in2 {
     width: 100%; 
     opacity: 0;
@@ -202,6 +239,11 @@ nav a:hover {
     width: 80%;
     border-radius: 10px;
 }
+.photo-grid img {
+    min-height: 180px; /* adjust as needed */
+    background-color: #0a0a0a; /* placeholder bg */
+    object-fit: cover;
+  }
 .container h1{
     text-align: left;
     margin-bottom: 5px;
@@ -251,3 +293,26 @@ nav a:hover {
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     border-radius: 12px;
 }
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: row;         /* instead of column */
+        flex-wrap: wrap;             /* wrap onto multiple lines if needed */
+        justify-content: center;
+        gap: 8px;                    /* space between items */
+      }
+    
+      .nav a {
+        margin: 0;
+        flex: 1 0 auto;              /* ensure items don’t stretch too wide */
+        text-align: center;
+      }
+  
+    .photo-grid {
+      grid-template-columns: 1fr; /* stack photos on mobile */
+    }
+  
+    .social-icons {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }

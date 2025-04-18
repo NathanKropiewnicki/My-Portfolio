@@ -11,6 +11,8 @@
 body {
     font-family: 'JetBrains Mono', monospace;
     background-color: #0c0c0c;
+    text-align: center;
+    align-items: center;
 }
 .nav-wrapper {
     display: flex;
@@ -32,11 +34,17 @@ body {
     animation-delay: 1ms;
 }
 .about {
+    margin-left: 200px;
+    margin-right: 800px;
+    color: white;
+}
+.soon h1 {
+    text-align: center;
+    margin: auto;
+    color: white;
+    display: flex;
+    justify-content: center;
     margin-top: 10px;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #ddd;
 }
 nav {
     display: flex;
@@ -84,59 +92,17 @@ nav a:hover {
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 50px;
-    padding: 50px 20px;
-    max-width: 1100px;
+    padding: 50px 5%;
+    gap: 40px;
+    max-width: 1200px;
     margin: auto;
-}
-.left-content {
-    flex: 1 1 300px;
-    display: flex;
-    justify-content: center;
-}
+  }
+  .left-content,
 .right-content {
-    flex: 2 1 500px;
-    color: white;
-}
-.right-content h1 {
-    text-align: center;
-    font-size: 2rem;
+  flex: 1 1 400px;
+  max-width: 500px;
 }
 
-.about,
-.experience {
-    text-align: left;
-}
-.right-content h2 {
-    font-size: 1.5rem;
-    margin: 30px 0 10px;
-    color: cyan;
-}
-
-.experience h3 {
-    font-size: 1.3rem;
-    color: #fff;
-    margin-bottom: 5px;
-}
-
-.experience h4 {
-    font-size: 1rem;
-    color: #bbb;
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.experience ul {
-    padding-left: 20px;
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-
-.experience li {
-    color: #ccc;
-    margin-bottom: 5px;
-    font-size: 0.95rem;
-}
 .intro-text {
     max-width: 500px;
     margin-top: 10px;
@@ -183,6 +149,8 @@ nav a:hover {
     color: #FFF;
     outline: none;
     border: none;
+    margin-top: 20px;
+    text-align: center;
 }
 .btn::after {
     content: "";
@@ -216,11 +184,16 @@ nav a:hover {
     opacity: 1;
 }
 .fade-in {
+    display: flex;                /* Add this */
+    flex-wrap: wrap;             /* Allow wrapping on smaller screens */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
     width: 100%; 
     opacity: 0;
-    transform: translateY(20px); /* Slight move-up effect */
+    transform: translateY(20px);
     animation: fadeInAnimation 1s ease-out forwards;
-}
+  }
 .fade-in2 {
     width: 100%; 
     opacity: 0;
@@ -266,11 +239,15 @@ nav a:hover {
     font-weight: bold;
 }
 .profile-pic {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
     object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
+  }
+  
+.container h1{
+    text-align: left;
+    margin-bottom: 5px;
 }
 .container img {
     max-width: 300px;
@@ -290,7 +267,17 @@ nav a:hover {
 .icon-container a {
     transition: transform 0.3s;
 }
-
+.left-content, .right-content {
+    flex: 1 1 400px;
+    max-width: 500px;
+  }
+  
+  .profile-pic {
+    width: 100%;
+    max-width: 350px;
+    border: 2px solid white;
+    border-radius: 12px;
+}
 .icon-container a:hover {
     transform: scale(1.15); /* Makes icons slightly larger on hover */
 }
@@ -317,3 +304,4 @@ nav a:hover {
       flex-wrap: wrap;
     }
   }
+  

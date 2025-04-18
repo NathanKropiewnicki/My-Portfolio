@@ -3,7 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('thankYouModal');
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
+        event.preventDefault(); // <- stop default first
+    
+        const emailInput = document.getElementById('email');
+        const emailValue = emailInput.value.trim();
+        const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+    
+        if (!emailRegex.test(emailValue)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
 
         const formData = new FormData(form);
 

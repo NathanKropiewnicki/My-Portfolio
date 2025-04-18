@@ -1,82 +1,152 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
   <link rel="stylesheet" href="clips.css" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
-  <title>My Portfolio</title>
 </head>
 <body>
   <script src="glow.js"></script>
-  <script src="clips.js"></script>
-
-  <nav class="nav">
-    <a href="index.html" ><img src="home.svg" />Home</a>
-    <a href="about.html"><img src="about.svg" />About</a>
-    <a href="projects.html"><img src="projects.svg" />Projects</a>
-    <a href="contact.html"><img src="contact.svg" />Contact</a>
-    <a href="photos.html"><img src="photos.svg" />Photos</a>
-    <a href="clips.html"><img src="photos.svg" />Esports</a>
-</nav>
-
-  <!-- Hero -->
-  <section class="hero fade-in">
-    <h1>Nathan Kropiewnicki — Esports Career</h1>
-    <p>Valorant | Bethel Pilots Esports</p>
-    <p><strong>Discord:</strong><a href="https://discord.com/users/400470063658041344" target="_blank">  Tkrop</a></p>
-  </section>
-
-  <!-- Achievements -->
-  <section class="achievements fade-in2">
-    <h2>🏆 Achievements</h2>
-    <ul>
-        <li>Team Captain – Bethel University Pilots Valorant</li>
-        <li>Highest KDA on team (2022 Spring Season),(2023 Fall Season), (2025 Spring Season)</li>
-        <li>2nd place ECAC Rivals Division Fall 2023</li>
-        <li>First team all WHAC Spring 2025</li>
-    </ul>
-  </section>
-
-  <!-- Photos -->
-  <section class="photos fade-in">
-    <h2>📸 Team Photos</h2>
-    <div class="photo-gallery">
-      <img src="whac.jpg" alt="First team all WHAC" />
-      <img src="lan.jpg" alt="LAN Game" />
-      <img src="glec.jpg" alt="GLEC Playoffs" />
-      <img src="ecac.jpg" alt="2nd place ECAC" />
-    </div>
-  </section>
-
-  <!-- Clips -->
-  <section class="clips fade-in2">
-    <h2>🎥 Highlight Clips</h2>
-    <div class="gallery">
-      <div class="video-item" onclick="openLightbox('clip1.mp4')"><video src="clip1.mp4" muted></video></div>
-      <div class="video-item" onclick="openLightbox('clip2.mp4')"><video src="clip2.mp4" muted></video></div>
-      <div class="video-item" onclick="openLightbox('clip3.mp4')"><video src="clip3.mp4" muted></video></div>
-      <div class="video-item" onclick="openLightbox('clip4.mp4')"><video src="clip4.mp4" muted></video></div>
-      <div class="video-item" onclick="openLightbox('clip5.mp4')"><video src="clip5.mp4" muted></video></div>
-      <div class="video-item" onclick="openLightbox('clip6.mp4')"><video src="clip6.mp4" muted></video></div>
-    </div>
-  </section>
-
-  <!-- Links -->
-  <section class="links fade-in">
-    <h2>🔗 Connect</h2>
-    <a class="btn" href="https://bupilots.com/sports/esports" target="_blank">Visit Bethel Pilots</a>
-    <a class="btn" href="https://bupilots.com/sb_output.aspx?form=20" target="_blank">Recruit Me</a>
-    <a class="btn" href="https://discord.gg/JTduzMD9hy" target="_blank">Join Our Discord</a>
-  </section>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="close" onclick="closeLightbox()">&times;</span>
-    <video id="lightboxVideo" controls autoplay>
-      <source id="lightboxSource" src="" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+  <script src="photos.js"></script>
+  <div class="nav-wrapper">
+    <nav class="nav">
+      <a href="index.html" ><img src="Icons/home.svg" />Home</a>
+      <a href="about.html"><img src="Icons/about.svg" />About</a>
+      <a href="projects.html"><img src="Icons/projects.svg" />Projects</a>
+      <a href="contact.html"><img src="Icons/contact.svg" />Contact</a>
+      <a href="photos.html"><img src="Icons/photos.svg" />Photos</a>
+      <a href="clips.html"><img src="Icons/photos.svg" />Esports</a>
+    </nav>
   </div>
+  <section class="hero fade-in2">
+    <h1>Nathan Kropiewnicki — Esports Career</h1>
+    <h3>Valorant | Bethel Pilots Esports</h3>
+    <p><strong>Discord:</strong><a href="https://discord.com/users/400470063658041344" target="_blank"> Tkrop</a></p>
+  </section>
+  <main class="main-content">
+    <section id="clips" class="section fade-in">
+      <h2>Match Highlights</h2>
+
+      <div class="hero-clip">
+        <video src="Clips/clip2.mp4" controls playsinline preload="metadata"></video>
+        <div class="clip-caption">
+          <h3>Ace vs Greenville University</h3>
+          <p>Reyna • Fall 2023</p>
+        </div>
+      </div>
+
+      <div class="clip-grid">
+        <div class="clip-card">
+          <video src="Clips/clip1.mp4" controls playsinline preload="metadata"></video>
+          <div class="clip-info">
+          <h4>1v3 Clutch vs Saint Joseph's University</h4>
+          <p>Reyna • Fall 2023</p>
+          </div>
+        </div>
+        <div class="clip-card">
+          <video src="Clips/clip3.mp4" controls playsinline preload="metadata"></video>
+          <div class="clip-info">
+            <h4>4k vs Defiance College</h4>
+            <p>Reyna | Fall 2023</p>
+          </div>
+        </div>
+        <div class="clip-card">
+          <video src="Clips/clip5.mp4" controls playsinline preload="metadata"></video>
+          <div class="clip-info">
+            <h4>Ace vs Cleary University</h4>
+            <p>Clove | Spring 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="link-row">
+      <a href="https://discord.gg/JTduzMD9hy">Join our Discord</a>
+      <a href="https://www.twitch.tv/bupilotsesports">Watch Us On Twitch</a>
+      <a href="https://bupilots.com/sports/esports">Bethel Pilots Esports</a>
+    </div>
+
+    <section id="recruiting" class="section">
+      <h2>Join Our Team</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>How to Apply</h3>
+          <p>Fill our our recruiting form today!</p>
+          <a href="https://bupilots.com/sb_output.aspx?form=20" class="btn">Apply Now</a>
+        </div>
+        <div class="card">
+          <h3>What We Look For</h3>
+          <ul>
+            <li>Strategic play & communication</li>
+            <li>Christian Character</li>
+            <li>Positive attitude</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="section">
+      <h2>Achievements</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Team Captain</h3>
+          <p>Bethel University Pilots Valorant</p>
+        </div>
+        <div class="card">
+          <h3>Highest KDA on team</h3>
+          <p>(2022 Spring Season),(2023 Fall Season), (2025 Spring Season)</p>
+        </div>
+        <div class="card">
+          <h3>Runners Up</h3>
+          <p>ECAC Rivals Division Fall 2023</p>
+        </div>
+        <div class="card">
+          <h3>First team all WHAC</h3>
+          <p>Spring 2025</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos" class="section">
+      <h2>Team Gallery</h2>
+      <div class="photo-gallery">
+        <figure>
+          <a href="Images/whac.jpg" class="lightbox">
+            <img src="Images/whac.jpg" alt="LAN Finals" />
+          </a>
+          <figcaption>First team all WHAC</figcaption>
+        </figure>
+        <figure>
+          <a href="Images/lan.jpg" class="lightbox">
+            <img src="Images/lan.jpg" alt="LAN Finals" />
+          </a>
+          <figcaption>LAN match against Valpo University</figcaption>
+        </figure>
+        <figure>
+          <a href="Images/glec.jpg" class="lightbox">
+            <img src="Images/glec.jpg" alt="Setup" />
+          </a>
+          <figcaption>GLEC playoffs spring 2024</figcaption>
+        </figure>
+        <figure>
+          <a href="Images/ecac.jpg" class="lightbox">
+            <img src="Images/ecac.jpg" alt="Setup" />
+          </a>
+          <figcaption>Runners up ECAC fall 2023</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div id="lightbox-overlay">
+      <span id="lightbox-close">&times;</span>
+      <button id="lightbox-prev">&#8592;</button>
+      <img id="lightbox-img" src="" alt="Fullscreen Photo" />
+      <button id="lightbox-next">&#8594;</button>
+      <p id="lightbox-caption"></p>
+    </div>
+  </main>
 </body>
 </html>
