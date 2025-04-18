@@ -295,18 +295,26 @@ nav a:hover {
     transform: scale(1.15); /* Makes icons slightly larger on hover */
 }
 @media (max-width: 768px) {
-    .nav {
-        flex-direction: row;         /* instead of column */
-        flex-wrap: wrap;             /* wrap onto multiple lines if needed */
-        justify-content: center;
-        gap: 8px;                    /* space between items */
-      }
-    
-      .nav a {
-        margin: 0;
-        flex: 1 0 auto;              /* ensure items don’t stretch too wide */
-        text-align: center;
-      }
+    .nav-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #0c0c0c; /* Ensure it doesn't overlap with white text */
+    padding-top: 10px;
+  }
+
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav a {
+    flex: 1 0 auto;
+    text-align: center;
+    margin: 4px;
+  }
   
     .photo-grid {
       grid-template-columns: 1fr; /* stack photos on mobile */
