@@ -38,40 +38,40 @@ body {
   100% {background-position: 0 0;}
 }
 nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  padding: 10px 20px;
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 700px;
-  margin: 20px auto 0 auto;
-  box-sizing: border-box;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto 0 auto;
+    box-sizing: border-box;
+  }
 nav a {
-  display: inline-block;
-  padding: 4px;
-  transition: background-color 0.3s, transform 0.3s;
-  box-sizing: border-box;
-  text-decoration: None;
-  color: white;
-  border-radius: 10px;
+    display: inline-block;
+    padding: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-sizing: border-box;
+    text-decoration: None;
+    color: white;
+    border-radius: 10px;
 }
 nav a img {
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
-  vertical-align: middle;
-  filter: invert(100%) sepia(90%) hue-rotate(120deg);
-}
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    vertical-align: middle;
+    filter: invert(100%) sepia(90%) hue-rotate(120deg);
+  }
 nav a:hover {
-  background-color: gray;
-  border-radius: 10px;
-  /* no padding added here */
-  transform: scale(1.05); /* optional for a slight effect */
+    background-color: gray;
+    border-radius: 10px;
+    /* no padding added here */
+    transform: scale(1.05); /* optional for a slight effect */
 }
 .photo-gallery {
   display: grid;
