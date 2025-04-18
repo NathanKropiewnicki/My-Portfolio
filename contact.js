@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const emailInput = document.getElementById('email');
         const emailValue = emailInput.value.trim();
-        const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
         if (!emailRegex.test(emailValue)) {
             alert("Please enter a valid email address.");
