@@ -304,10 +304,3 @@ nav a:hover {
       flex-wrap: wrap;
     }
   }
-  .soon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 40vh;
-  text-align: center;
-}
