@@ -1,29 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="projects.css" />
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
-        <title>My Portfolio</title>
-    </head>
-    <body>
-        <script src="glow.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="projects.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+  <title>My Portfolio</title>
+  <style>
+    /* Project Grid Styling */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
 
-        <div class="nav-wrapper">
-            <nav class="nav">
-                <a href="index.html"><img src="home.svg" />Home</a>
-                <a href="about.html"><img src="about.svg" />About</a>
-                <a href="projects.html"><img src="projects.svg" />Projects</a>
-                <a href="contact.html"><img src="contact.svg" />Contact</a>
-                <!--<a href="photos.html"><img src="photos.svg" />Photos</a> -->
-                <a href="clips.html"><img src="photos.svg" />Esports</a>
-            </nav>
+    .project {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      max-height: 200px;
+      position: relative;
+    }
+
+    .project:hover {
+      background-color: #f0f0f0;
+    }
+
+    .project.expanded {
+      max-height: 500px;
+    }
+
+    .project-title {
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      background-color: #1e90ff;
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-content {
+      padding: 1rem;
+      display: none;
+      font-size: 0.95rem;
+      color: #333;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project.expanded .project-content {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .project-content {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="glow.js"></script>
+
+  <div class="nav-wrapper">
+    <nav class="nav">
+      <a href="index.html"><img src="home.svg" />Home</a>
+      <a href="about.html"><img src="about.svg" />About</a>
+      <a href="projects.html"><img src="projects.svg" />Projects</a>
+      <a href="contact.html"><img src="contact.svg" />Contact</a>
+      <!--<a href="photos.html"><img src="photos.svg" />Photos</a> -->
+      <a href="clips.html"><img src="photos.svg" />Esports</a>
+    </nav>
+  </div>
+
+  <main class="main-content">
+    <h1>My Projects</h1>
+
+    <div class="grid">
+      <div class="project" onclick="this.classList.toggle('expanded')">
+        <div class="project-title">Project 1</div>
+        <div class="project-content">
+          <p>This is a description of Project 1. It involved using React, Node.js, and MongoDB to build a full-stack application.</p>
         </div>
+      </div>
 
-        <main class="main-content">
-            <h1>Coming Soon...</h1>
-        </main>
-    </body>
+      <div class="project" onclick="this.classList.toggle('expanded')">
+        <div class="project-title">Project 2</div>
+        <div class="project-content">
+          <p>This project was a Python data analysis tool using pandas and matplotlib to visualize datasets interactively.</p>
+        </div>
+      </div>
+
+      <div class="project" onclick="this.classList.toggle('expanded')">
+        <div class="project-title">Project 3</div>
+        <div class="project-content">
+          <p>This mobile app was built with Flutter and integrated with Firebase for authentication and storage.</p>
+        </div>
+      </div>
+
+      <!-- Add more projects below -->
+    </div>
+  </main>
+</body>
 </html>
 
