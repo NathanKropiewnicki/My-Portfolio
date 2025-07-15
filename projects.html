@@ -27,6 +27,11 @@
       text-align: center;
     }
 
+    .project h2 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
     .project:hover {
       background-color: #f0f0f0;
     }
@@ -58,8 +63,16 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
       font-family: 'JetBrains Mono', monospace;
       position: relative;
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 0.25s ease;
     }
 
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
     .modal-close {
       position: absolute;
       top: 1rem;
@@ -71,6 +84,10 @@
 
     .modal-close:hover {
       color: #000;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     @media (max-width: 600px) {
@@ -116,7 +133,7 @@
   </main>
 
   <!-- Modal Overlay -->
-  <div class="modal-overlay" id="projectModal">
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <span class="modal-close" onclick="closeModal()">&times;</span>
       <div id="modalContentArea"></div>
