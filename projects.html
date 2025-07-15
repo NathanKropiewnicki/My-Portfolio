@@ -202,7 +202,7 @@
         <img src="databricks.png" alt="Databricks Icon" class="project-icon" />
       </div>
 
-      <div class="project" onclick="openModal('Devotional App', databricksModalContent)">
+      <div class="project" onclick="openModal('Devotional App', databricksModalContent2)">
         <h2>Devotional App</h2>
         <img src="workin.png" alt="Work in Progress" class="project-icon" />
       </div>
@@ -366,6 +366,58 @@
       <video src="databricks.mp4" controls playsinline preload="metadata" class="modal-video-thumb"></video>
     </div>
 
+  `;
+  const databricksModalContent2 = `
+    <section id="portfolio-journal-app">
+      <h2>📓 Spiritual Reflection Journal App</h2>
+      <p><strong>Tech Stack:</strong> SwiftUI · Core Data · AppStorage · MVVM Architecture</p>
+    
+      <p>
+        I’m developing a multi-tab iOS app designed to help users reflect on their spiritual and emotional well-being through daily journaling. 
+        The app includes three main sections:
+      </p>
+    
+      <h3>✅ Current Features:</h3>
+      <ul>
+        <li>
+          <strong>Gratitude Journal</strong><br>
+          A section for users to log daily gratitude entries. Each entry is timestamped, saved in Core Data, and grouped by date in a clean list UI. 
+          Swipe actions allow editing or deleting entries inline.
+        </li>
+        <li>
+          <strong>Reflection Journal</strong><br>
+          Prompts users to reflect on their day with placeholder guidance. Supports color-themed customization based on user preference via <code>@AppStorage</code>. 
+          Reflection entries are persisted in Core Data and grouped by date.
+        </li>
+        <li>
+          <strong>Prayer Journal</strong><br>
+          Users can categorize entries into “Request,” “Reflection,” or “Answered Prayer” using a segmented control. 
+          Includes Core Data support with custom grouping and inline entry editing or deletion.
+        </li>
+        <li>
+          <strong>Dynamic Themes</strong><br>
+          Users can choose a preferred background (white, dark, beige, light gray), which applies consistently across all views using <code>@AppStorage</code>.
+        </li>
+        <li>
+          <strong>Data Persistence</strong><br>
+          All journal data is stored locally using Core Data, allowing full offline access and long-term storage of journal history.
+        </li>
+      </ul>
+    
+      <h3>🛠️ Planned Features:</h3>
+      <ul>
+        <li><strong>Search and Filtering</strong> – Search/filter entries by keyword, date, or category.</li>
+        <li><strong>iCloud Syncing</strong> – Sync entries across devices using CloudKit.</li>
+        <li><strong>Daily Notifications</strong> – Remind users to journal each day and build consistency.</li>
+        <li><strong>Verse of the Day Integration</strong> – Display a new Bible verse daily as a spiritual prompt.</li>
+        <li><strong>Export Entries</strong> – Allow users to export journal entries as PDF or text.</li>
+      </ul>
+    
+      <p>
+        This project showcases my ability to work with Core Data, SwiftUI components, app architecture, and data persistence — 
+        while also designing for a real-world use case: emotional and spiritual growth through intentional journaling.
+      </p>
+    </section>
   `;
 </script>
 <div id="lightboxOverlay" class="lightbox-overlay" style="display:none;">
