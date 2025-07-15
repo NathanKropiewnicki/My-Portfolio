@@ -155,6 +155,21 @@
       z-index: 1101;
     }
     
+    .modal-thumb,
+    .modal-video-thumb {
+      width: 100px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+    
+    .modal-video-thumb:hover {
+      transform: scale(1.05);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
 
     @media (max-width: 600px) {
       .modal-content {
@@ -224,21 +239,32 @@
       if (e.target === this) closeModal();
     });
     document.addEventListener('click', function(event) {
+      const lightboxOverlay = document.getElementById('lightboxOverlay');
+      const img = document.getElementById('lightboxImage');
+      const vid = document.getElementById('lightboxVideo');
+    
       if (event.target.classList.contains('modal-thumb')) {
-        const src = event.target.getAttribute('src');
-        const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxOverlay = document.getElementById('lightboxOverlay');
-        lightboxImage.src = src;
+        img.src = event.target.getAttribute('src');
+        img.style.display = 'block';
+        vid.style.display = 'none';
+        lightboxOverlay.style.display = 'flex';
+      } else if (event.target.classList.contains('modal-video-thumb')) {
+        vid.src = event.target.getAttribute('src');
+        vid.style.display = 'block';
+        img.style.display = 'none';
         lightboxOverlay.style.display = 'flex';
       }
     });
     
     function closeLightbox() {
       const lightboxOverlay = document.getElementById('lightboxOverlay');
+      document.getElementById('lightboxImage').style.display = 'none';
+      document.getElementById('lightboxVideo').pause(); // Stop video playback
+      document.getElementById('lightboxVideo').src = '';
+      document.getElementById('lightboxVideo').style.display = 'none';
       lightboxOverlay.style.display = 'none';
-      document.getElementById('lightboxImage').src = '';
     }
-    
+
     // Also close lightbox when clicking outside the image
     document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
       if (e.target === this) closeLightbox();
@@ -342,13 +368,16 @@
     <h4>Screenshots & Visuals</h4>
     <div class="modal-image-gallery">
       <img src="databricks.png" alt="Screenshot 1" class="modal-thumb" />
-      <video src="databricks.mp4" controls playsinline preload="metadata"></video>
+      <video src="databricks.mp4" class="modal-video-thumb" controls preload="metadata" playsinline></video>
     </div>
+
   `;
 </script>
 <div id="lightboxOverlay" class="lightbox-overlay" style="display:none;">
   <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-  <img id="lightboxImage" src="" alt="Expanded image" />
+  <img id="lightboxImage" style="display: none;" />
+  <video id="lightboxVideo" style="display: none;" controls></video>
+
 </div>
 </body>
 </html>
