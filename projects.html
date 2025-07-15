@@ -22,42 +22,60 @@
       overflow: hidden;
       transition: all 0.3s ease;
       cursor: pointer;
-      max-height: 200px;
-      position: relative;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 1rem;
+      text-align: center;
     }
 
     .project:hover {
       background-color: #f0f0f0;
     }
 
-    .project.expanded {
-      max-height: 500px;
-    }
-
-    .project-title {
-      padding: 1rem;
-      font-weight: bold;
-      font-size: 1.2rem;
-      background-color: #1e90ff;
-      color: white;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .project-content {
-      padding: 1rem;
+    /* Modal Styling */
+    .modal-overlay {
       display: none;
-      font-size: 0.95rem;
-      color: #333;
-      font-family: 'JetBrains Mono', monospace;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
     }
 
-    .project.expanded .project-content {
-      display: block;
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+      font-family: 'JetBrains Mono', monospace;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .modal-close:hover {
+      color: #000;
     }
 
     @media (max-width: 600px) {
-      .project-content {
-        font-size: 0.9rem;
+      .modal-content {
+        padding: 1.2rem;
       }
     }
   </style>
@@ -80,30 +98,47 @@
     <h1>My Projects</h1>
 
     <div class="grid">
-      <div class="project" onclick="this.classList.toggle('expanded')">
-        <div class="project-title">Project 1</div>
-        <div class="project-content">
-          <p>This is a description of Project 1. It involved using React, Node.js, and MongoDB to build a full-stack application.</p>
-        </div>
+      <div class="project" onclick="openModal('Project 1', 'This is a description of Project 1. It involved using React, Node.js, and MongoDB to build a full-stack application.')">
+        <h2>Project 1</h2>
       </div>
 
-      <div class="project" onclick="this.classList.toggle('expanded')">
-        <div class="project-title">Project 2</div>
-        <div class="project-content">
-          <p>This project was a Python data analysis tool using pandas and matplotlib to visualize datasets interactively.</p>
-        </div>
+      <div class="project" onclick="openModal('Project 2', 'This project was a Python data analysis tool using pandas and matplotlib to visualize datasets interactively.')">
+        <h2>Project 2</h2>
       </div>
 
-      <div class="project" onclick="this.classList.toggle('expanded')">
-        <div class="project-title">Project 3</div>
-        <div class="project-content">
-          <p>This mobile app was built with Flutter and integrated with Firebase for authentication and storage.</p>
-        </div>
+      <div class="project" onclick="openModal('Project 3', 'This mobile app was built with Flutter and integrated with Firebase for authentication and storage.')">
+        <h2>Project 3</h2>
       </div>
 
-      <!-- Add more projects below -->
+      <!-- Add more project blocks here -->
     </div>
   </main>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Project Title</h2>
+      <p id="modalDescription">Project description will go here.</p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title, description) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDescription').textContent = description;
+      document.getElementById('projectModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').classList.remove('active');
+    }
+
+    // Optional: close modal when clicking outside content
+    document.getElementById('projectModal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
 </body>
 </html>
 
