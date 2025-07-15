@@ -60,6 +60,8 @@
       border-radius: 12px;
       max-width: 600px;
       width: 90%;
+      max-height: 80vh; /* 👈 Limits modal height */
+      overflow-y: auto;  /* 👈 Enables scrolling if content is too tall */
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
       font-family: 'JetBrains Mono', monospace;
       position: relative;
@@ -67,6 +69,7 @@
       opacity: 0;
       transition: all 0.25s ease;
     }
+
 
     .modal-overlay.active .modal-content {
       transform: scale(1);
