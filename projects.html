@@ -206,6 +206,12 @@
         <h2>Devotional App</h2>
         <img src="workin.png" alt="Work in Progress" class="project-icon" />
       </div>
+
+      <div class="project" onclick="openModal('Typing Test', databricksModalContent3)">
+        <h2>Typing Test</h2>
+        <img src="typing.png" alt="Typing Icon" class="project-icon" />
+      </div>
+
     </div>
   </main>
 
@@ -419,6 +425,97 @@
       </p>
     </section>
   `;
+  const databricksModalContent3 = `
+    <style>
+      #test-text {
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+      #input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+        margin-bottom: 1rem;
+        font-family: monospace;
+      }
+      #results p {
+        margin: 0.2rem 0;
+      }
+      #results {
+        margin-top: 1rem;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 8px 16px;
+        border: none;
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #555;
+      }
+    </style>
+    <h1>Typing Test</h1>
+    <p id="test-text">The quick brown fox jumps over the lazy dog.</p>
+    <textarea id="input" placeholder="Start typing here..." rows="5"></textarea>
+    <div id="results">
+      <p><strong>Time:</strong> <span id="time">0</span>s</p>
+      <p><strong>WPM:</strong> <span id="wpm">0</span></p>
+      <p><strong>Accuracy:</strong> <span id="accuracy">100</span>%</p>
+    </div>
+    <button onclick="resetTest()">Restart</button>
+  `;
+
+</script>
+<script>
+  const typingText = "The quick brown fox jumps over the lazy dog.";
+  let startTime, timerInterval;
+
+  document.addEventListener("input", function (e) {
+    const input = document.getElementById("input");
+    if (!input || e.target !== input) return;
+
+    if (!startTime) {
+      startTime = new Date();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    const typed = input.value;
+    const correctChars = typed.split('').filter((c, i) => c === typingText[i]).length;
+
+    const elapsedMinutes = (new Date() - startTime) / 1000 / 60;
+    const wordCount = typed.trim().split(/\s+/).filter(Boolean).length;
+    const wpm = Math.round(wordCount / elapsedMinutes) || 0;
+    const accuracy = Math.round((correctChars / typed.length) * 100) || 100;
+
+    document.getElementById("wpm").textContent = wpm;
+    document.getElementById("accuracy").textContent = accuracy;
+
+    if (typed === typingText) {
+      clearInterval(timerInterval);
+    }
+  });
+
+  function updateTimer() {
+    const time = Math.floor((new Date() - startTime) / 1000);
+    document.getElementById("time").textContent = time;
+  }
+
+  function resetTest() {
+    const input = document.getElementById("input");
+    if (!input) return;
+
+    input.value = "";
+    startTime = null;
+    clearInterval(timerInterval);
+    document.getElementById("time").textContent = 0;
+    document.getElementById("wpm").textContent = 0;
+    document.getElementById("accuracy").textContent = 100;
+  }
+</script>
+
 </script>
 <div id="lightboxOverlay" class="lightbox-overlay" style="display:none;">
   <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
