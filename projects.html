@@ -493,9 +493,16 @@
     document.getElementById("wpm").textContent = wpm;
     document.getElementById("accuracy").textContent = accuracy;
 
-    if (typed === typingText) {
+   if (typed === typingText) {
       clearInterval(timerInterval);
+      document.getElementById("input").disabled = true;
+      const doneMsg = document.createElement("p");
+      doneMsg.textContent = "✅ Test Complete!";
+      doneMsg.style.marginTop = "1rem";
+      doneMsg.style.fontWeight = "bold";
+      document.getElementById("results").appendChild(doneMsg);
     }
+
   });
 
   function updateTimer() {
@@ -506,14 +513,22 @@
   function resetTest() {
     const input = document.getElementById("input");
     if (!input) return;
-
+  
     input.value = "";
+    input.disabled = false;
     startTime = null;
     clearInterval(timerInterval);
     document.getElementById("time").textContent = 0;
     document.getElementById("wpm").textContent = 0;
     document.getElementById("accuracy").textContent = 100;
+  
+    // Remove any “Test Complete” messages
+    const resultsDiv = document.getElementById("results");
+    [...resultsDiv.querySelectorAll("p")].forEach(p => {
+      if (p.textContent.includes("Test Complete")) p.remove();
+    });
   }
+
 </script>
 
 </script>
