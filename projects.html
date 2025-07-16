@@ -488,14 +488,16 @@
 
     const typed = input.value;
     const correctChars = typed.split('').filter((c, i) => c === typingText[i]).length;
-
-    const elapsedMinutes = (new Date() - startTime) / 1000 / 60;
-    const wordCount = typed.trim().split(/\s+/).filter(Boolean).length;
-    const wpm = Math.round(wordCount / elapsedMinutes) || 0;
+    
+    const elapsedSeconds = (new Date() - startTime) / 1000;
+    const elapsedMinutes = elapsedSeconds / 60;
+    
+    const grossWPM = Math.round((typed.length / 5) / elapsedMinutes);
     const accuracy = Math.round((correctChars / typed.length) * 100) || 100;
-
-    document.getElementById("wpm").textContent = wpm;
+    
+    document.getElementById("wpm").textContent = isFinite(grossWPM) ? grossWPM : 0;
     document.getElementById("accuracy").textContent = accuracy;
+
 
    if (typed === typingText) {
       clearInterval(timerInterval);
