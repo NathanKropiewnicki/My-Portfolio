@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aimlabs Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Aimlabs Performance Dashboard</h1>
+  <canvas id="scoreChart"></canvas>
+  <canvas id="accuracyChart"></canvas>
+  <canvas id="scenarioChart"></canvas>
+  <canvas id="bestWorstChart"></canvas>
+
+  <script>
+    const apiUrl = 'https://aimlabs-api.onrender.com/stats'; // ← your Render URL
+    const token = localStorage.getItem('authToken');
+
+    fetch(apiUrl, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      const labels = data.map(d => new Date(d.date_played).toLocaleDateString());
+      const scores = data.map(d => d.score);
+      const accuracy = data.map(d => d.accuracy);
+      const scenarios = {};
+
+      data.forEach(d => {
+        if (!scenarios[d.scenario]) scenarios[d.scenario] = [];
+        scenarios[d.scenario].push(d.score);
+      });
+
+      const scenarioLabels = Object.keys(scenarios);
+      const scenarioAverages = scenarioLabels.map(label => {
+        const scores = scenarios[label];
+        return scores.reduce((a, b) => a + b, 0) / scores.length;
+      });
+
+      const best = data.reduce((a, b) => a.score > b.score ? a : b);
+      const worst = data.reduce((a, b) => a.score < b.score ? a : b);
+
+      new Chart(scoreChart, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Score Over Time',
+            data: scores,
+            borderColor: 'blue',
+            fill: false
+          }]
+        }
+      });
+
+      new Chart(accuracyChart, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Accuracy Over Time',
+            data: accuracy,
+            borderColor: 'green',
+            fill: false
+          }]
+        }
+      });
+
+      new Chart(scenarioChart, {
+        type: 'bar',
+        data: {
+          labels: scenarioLabels,
+          datasets: [{
+            label: 'Average Score per Scenario',
+            data: scenarioAverages,
+            backgroundColor: 'purple'
+          }]
+        }
+      });
+
+      new Chart(bestWorstChart, {
+        type: 'bar',
+        data: {
+          labels: ['Best Session', 'Worst Session'],
+          datasets: [{
+            label: 'Scores',
+            data: [best.score, worst.score],
+            backgroundColor: ['gold', 'gray']
+          }]
+        }
+      });
+    });
+  </script>
+</body>
+</html>
