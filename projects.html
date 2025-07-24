@@ -234,12 +234,27 @@
 
   <script>
     function openModal(title, htmlContent) {
-      document.getElementById('modalContentArea').innerHTML = `
-        <h2>${title}</h2>
-        ${htmlContent}
-      `;
-      document.getElementById('projectModal').classList.add('active');
+    const modal = document.getElementById('projectModal');
+    const content = document.getElementById('modalContentArea');
+  
+    content.innerHTML = `<h2>${title}</h2>${htmlContent}`;
+    modal.classList.add('active');
+  
+    // Attach login handler if the modal has the login form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const pw = document.getElementById('pw').value;
+        if (pw === 'dashboard123') {
+          localStorage.setItem('authToken', 'FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY');
+          window.location.href = 'dashboard.html';
+        } else {
+          alert('Wrong password');
+        }
+      });
     }
+  }
   
     function closeModal() {
       document.getElementById('projectModal').classList.remove('active');
@@ -478,24 +493,11 @@
   `;
   const databricksModalContent4 = `
     <div>
-        <h2>Login to View Dashboard</h2>
-      <form onsubmit="login(event)">
+      <h2>Login to View Dashboard</h2>
+      <form id="loginForm">
         <input type="password" id="pw" placeholder="Password" />
         <button type="submit">Login</button>
       </form>
-    
-      <script>
-        const login = (e) => {
-          e.preventDefault();
-          const pw = document.getElementById('pw').value;
-          if (pw === 'dashboard123') {
-            localStorage.setItem('authToken', 'FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY');
-            window.location.href = 'dashboard.html';
-          } else {
-            alert('Wrong password');
-          }
-        };
-      </script>
     </div>
   `;
 </script>
