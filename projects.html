@@ -477,7 +477,26 @@
     <button onclick="resetTest()">Restart</button>
   `;
   const databricksModalContent4 = `
-    <h4>Overview</h4>
+    <div>
+        <h2>Login to View Dashboard</h2>
+      <form onsubmit="login(event)">
+        <input type="password" id="pw" placeholder="Password" />
+        <button type="submit">Login</button>
+      </form>
+    
+      <script>
+        const login = (e) => {
+          e.preventDefault();
+          const pw = document.getElementById('pw').value;
+          if (pw === 'dashboard123') {
+            localStorage.setItem('authToken', 'FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY');
+            window.location.href = 'dashboard.html';
+          } else {
+            alert('Wrong password');
+          }
+        };
+      </script>
+    </div>
   `;
 </script>
 <script>
