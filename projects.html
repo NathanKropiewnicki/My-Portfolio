@@ -498,6 +498,68 @@
         <input type="password" id="pw" placeholder="Password" />
         <button type="submit">Login</button>
       </form>
+      <h1>Valorant Aimlabs Stat Uploader – Project Overview</h1>
+
+      <h2>What It Does</h2>
+      <p>This app is a full-stack application that helps Valorant players <strong>track and upload their Aimlabs performance stats</strong> for long-term improvement analysis. It provides a structured way to collect, store, and visualize training data across sessions.</p>
+  
+      <h2>⚙Core Functionality</h2>
+  
+      <h3>Upload Aimlabs Stats (Python Script)</h3>
+      <ul>
+          <li>A command-line Python script (<code>aimlabs_uploader.py</code>) allows users to upload performance metrics from Aimlabs (like score, accuracy, kills, time, etc.) to a backend service.</li>
+          <li>The script sends a POST request to a FastAPI server with stats in JSON format.</li>
+      </ul>
+  
+      <h3>FastAPI Backend</h3>
+      <ul>
+          <li>Built with <a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a>, this backend receives and processes Aimlabs data from users.</li>
+          <li>It uses <strong>SQLAlchemy</strong> to interact with a Postgres database, storing each training stat entry with a timestamp.</li>
+          <li>A <code>/submit</code> endpoint is exposed for uploading new stats, and a <code>/stats</code> endpoint will allow querying them later.</li>
+      </ul>
+  
+      <h3>Persistent Storage with PostgreSQL</h3>
+      <ul>
+          <li>User performance stats are saved into a cloud-hosted PostgreSQL database (e.g., on <a href="https://render.com" target="_blank">Render</a>).</li>
+          <li>The database enables historical tracking, so players can measure growth over time.</li>
+      </ul>
+  
+      <h3>Future Frontend (Optional)</h3>
+      <ul>
+          <li>The backend is designed to support a frontend dashboard.</li>
+          <li>This could display performance charts, session breakdowns, map stats, and trends using tools like React, Dash, or plain HTML/CSS.</li>
+      </ul>
+      <h2>Technologies Used</h2>
+      <table>
+          <thead>
+              <tr>
+                  <th>Stack</th>
+                  <th>Tool / Library</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><strong>Backend</strong></td>
+                  <td>FastAPI, Uvicorn</td>
+              </tr>
+              <tr>
+                  <td><strong>Database</strong></td>
+                  <td>PostgreSQL (via Render)</td>
+              </tr>
+              <tr>
+                  <td><strong>ORM</strong></td>
+                  <td>SQLAlchemy</td>
+              </tr>
+              <tr>
+                  <td><strong>Client</strong></td>
+                  <td>Python requests (CLI uploader)</td>
+              </tr>
+              <tr>
+                  <td><strong>Deployment</strong></td>
+                  <td>Local & Render (planned)</td>
+              </tr>
+          </tbody>
+      </table>
     </div>
   `;
 </script>
