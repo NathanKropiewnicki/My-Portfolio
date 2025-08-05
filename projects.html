@@ -216,8 +216,13 @@
         <img src="/assets/img/typing.png" alt="Typing Icon" class="project-icon" />
       </div>
 
-      <div class="project" onclick="openModal('Typing Test', databricksModalContent4)">
+      <div class="project" onclick="openModal('Aimlabs Reporting Tool', databricksModalContent4)">
         <h2>Aimlabs Reporting Tool</h2>
+        <img src="/assets/img/aimlabs.png" alt="Aimlabs Icon" class="project-icon" />
+      </div>
+
+      <div class="project" onclick="openModal('Esports Lab Automation', databricksModalContent5)">
+        <h2>Esports Lab Automation</h2>
         <img src="/assets/img/aimlabs.png" alt="Aimlabs Icon" class="project-icon" />
       </div>
 
@@ -562,6 +567,75 @@
       </table>
     </div>
   `;
+  const databricksModalContent5 = `
+    <div>
+      <h1>Game Update Automation Using LanCache</h1>
+
+      <h2>Overview</h2>
+      <p>
+        To streamline bandwidth usage and accelerate game updates across multiple platforms (Steam, Epic Games, and Riot Games), I deployed a custom <strong>LanCache stack</strong> on a dedicated Ubuntu machine.
+        This setup acts as a <strong>local transparent caching proxy</strong>, reducing internet load and ensuring near-instant updates for multiple machines on my network.
+      </p>
+    
+      <h2>Technologies Used</h2>
+      <ul>
+        <li>Ubuntu Server 20.04</li>
+        <li>Docker + Docker Compose</li>
+        <li>LanCache (Monolithic, DNS, and SNI Proxy)</li>
+        <li>Static IP & Router DNS Overrides</li>
+        <li>Target Platforms:
+          <ul>
+            <li>Steam (e.g. Rocket League)</li>
+            <li>Epic Games Launcher</li>
+            <li>Riot Client (Valorant, League of Legends)</li>
+          </ul>
+        </li>
+      </ul>
+    
+      <h2>How It Works</h2>
+      <ol>
+        <li>LanCache intercepts DNS traffic for common game CDN domains and points them to the local cache server.</li>
+        <li>Game launchers download updates as usual, but the responses are cached locally on the first download.</li>
+        <li>Subsequent machines pull the data directly from the cache, reducing download times drastically.</li>
+      </ol>
+    
+      <h2>System Architecture</h2>
+      <pre>
+    [ Game Client ]
+         |
+         | (DNS query: steamcontent.com)
+         ↓
+    [ LanCache DNS Container ] ----> Upstream DNS (Cloudflare)
+         |
+         ↓
+    [ LanCache Monolithic (HTTP Proxy)]
+         |
+         ↓
+    [ Local Storage Cache ]
+      </pre>
+    
+      <h2>Benefits</h2>
+      <ul>
+        <li>80–90% bandwidth savings on repeated game installs/updates</li>
+        <li>Reduced update times for the lab overall</li>
+        <li>No config changes needed on client machines</li>
+      </ul>
+    
+      <h2>Deployment Timeline & Current Status</h2>
+      <p>
+        I’ve been actively developing and refining this LanCache system during the summer of 2025. My goal is to have it fully deployed and integrated into our <strong>collegiate esports infrastructure</strong> by the start of the <strong>Fall 2025 semester</strong>.
+      </p>
+      <p>
+        This deployment will ensure that players across our team can:
+        <ul>
+          <li>Quickly install or update titles before matches and scrims(as we have had issues in the past)</li>
+          <li>Avoid redundant bandwidth usage across multiple devices</li>
+          <li>Maintain consistency across game versions during practice and events</li>
+        </ul>
+        This setup is currently being tested with multiple clients on a local network and will be scaled to our full team environment once final testing is complete.
+      </p>
+    </div>
+  `;
 </script>
 <script>
   const typingText = "The quick brown fox jumps over the lazy dog.";
@@ -636,3 +710,4 @@
 </div>
 </body>
 </html>
+
