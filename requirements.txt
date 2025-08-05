@@ -2,3 +2,8 @@ fastapi
 uvicorn
 pydantic
 python-multipart
+Flask
+qrcode
+Pillow
+gunicorn
+

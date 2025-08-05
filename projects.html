@@ -652,6 +652,17 @@
         <li>Text/URL input</li>
         <li>PNG image output</li>
       </ul>
+      <p>Enter a URL and generate a downloadable QR code:</p>
+
+      <form action="https://qrcode-ambo.onrender.com" method="POST" target="_blank">
+        <label for="link">Link to Encode:</label><br>
+        <input type="text" id="link" name="link" required><br><br>
+    
+        <label for="name">File Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="e.g., my_qr_code" required><br><br>
+    
+        <button type="submit">Generate QR Code</button>
+      </form>
     
       <h3>Word Guessing Game (Hangman-inspired)</h3>
       <p>A terminal-based game where players guess a hidden word with limited tries.</p>
@@ -746,6 +757,7 @@
 </div>
 </body>
 </html>
+
 
 
 
