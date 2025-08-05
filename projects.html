@@ -226,6 +226,11 @@
         <img src="/assets/img/lab.png" alt="Lab Icon" class="project-icon" />
       </div>
 
+      <div class="project" onclick="openModal('Small Projects', databricksModalContent6)">
+        <h2>Small Python Projects</h2>
+        <img src="/assets/img/python.png" alt="Python Icon" class="project-icon" />
+      </div>
+
     </div>
   </main>
 
@@ -636,6 +641,37 @@
       </p>
     </div>
   `;
+  const databricksModalContent6 = `
+    <div>
+      <h2>Small Python Projects</h2>
+      <p>As part of my continuous learning and experimentation with Python, I’ve developed several small-scale projects that demonstrate my understanding of core programming concepts and my ability to turn ideas into functional tools.</p>
+    
+      <h3>QR Code Generator</h3>
+      <p>A simple Python tool using <code>qrcode</code> and <code>Pillow</code> to generate QR codes from user input.</p>
+      <ul>
+        <li>Text/URL input</li>
+        <li>PNG image output</li>
+      </ul>
+    
+      <h3>Word Guessing Game (Hangman-inspired)</h3>
+      <p>A terminal-based game where players guess a hidden word with limited tries.</p>
+      <ul>
+        <li>Random word selection</li>
+        <li>Input validation and guess tracking</li>
+        <li>End-game feedback</li>
+      </ul>
+    
+      <h3>Basic Calculator</h3>
+      <p>A command-line calculator supporting fundamental operations.</p>
+      <ul>
+        <li>Addition, subtraction, multiplication, division</li>
+        <li>Error handling for invalid input</li>
+      </ul>
+    
+      <h3>Purpose</h3>
+      <p>These projects allowed me to sharpen my coding skills while building practical tools and games using Python.</p>
+    </div>
+  `;
 </script>
 <script>
   const typingText = "The quick brown fox jumps over the lazy dog.";
@@ -710,5 +746,6 @@
 </div>
 </body>
 </html>
+
 
 
