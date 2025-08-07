@@ -18,35 +18,56 @@ body {
     margin-top: 20px;
   }
 
+/* Fullscreen overlay */
 #loader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #0e0e0e; /* match your background or use #fff */
+  inset: 0;
+  background-color: #0e0e0e; /* Or your background color */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
 }
 
-/* Spinner style */
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid #ccc;
-  border-top: 6px solid #00f2ff; /* glow color */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+/* Container for loader content */
+.loader-content {
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
 }
 
-/* Spin animation */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+/* Optional logo styling */
+.loader-logo {
+  width: 80px;
+  height: 80px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Optional loading text */
+.loader-text {
+  color: #00f2ff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+  animation: blink 1.5s steps(1) infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 #glow {
@@ -356,5 +377,6 @@ nav a:hover {
       flex-wrap: wrap;
     }
   }
+
 
 
