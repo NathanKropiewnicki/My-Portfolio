@@ -22,6 +22,113 @@
     <div class="container fade-in">
         <div class="left-content">
             <img class="profile-pic" src="/assets/img/smallface.jpg" alt="Face">
+            <div class="grid">
+              <div class="project" onclick="openModal('Databricks File Management and Processing Dashboard', databricksModalContent)">
+                <h2>Databricks Dashboard</h2>
+                <img src="/assets/img/databricks.png" alt="Databricks Icon" class="project-icon" />
+            </div>
+            <script>
+              const databricksModalContent = `
+                <h4>Overview</h4>
+                <p>
+                  This application is a fully interactive <strong>Dash web dashboard</strong> designed to streamline the process of
+                  <strong>uploading, processing, monitoring, and managing data files</strong> within a
+                  <strong>Databricks Lakehouse environment</strong>.
+                </p>
+            
+                <h4>Key Objectives</h4>
+                <ul>
+                  <li>Simplify file ingestion into Databricks volumes via a secure UI</li>
+                  <li>Allow non-technical users to upload files, trigger processing pipelines, and monitor logs</li>
+                  <li>Automate validation, logging, and pipeline execution</li>
+                  <li>Provide an intuitive interface for deleting data artifacts safely</li>
+                  <li>Display real-time pipeline statuses with playful, brand-aligned UI elements</li>
+                </ul>
+            
+                <h4>Features</h4>
+                <h5>1. Upload & Trigger Pipeline</h5>
+                <ul>
+                  <li>Select from multiple <strong>document types</strong>, each mapped to a configured Databricks volume path</li>
+                  <li>Drag-and-drop or click to upload files via a friendly UI</li>
+                  <li>Files are organized by timestamp in folder structures like <code>/volume/2025/07/15/my_file.json</code></li>
+                  <li>Users can trigger a <strong>DLT pipeline</strong> to process the uploaded file</li>
+                  <li>Includes confirmation modals to prevent accidental execution</li>
+                </ul>
+            
+                <h5>2. Real-Time Pipeline Monitoring</h5>
+                <ul>
+                  <li>Fetches and displays the <strong>Databricks pipeline state</strong> using the SDK</li>
+                  <li>Displays up to 5 recent update logs with:
+                    <ul>
+                      <li>Update ID</li>
+                      <li>State (e.g., RUNNING, FAILED)</li>
+                      <li>Cause of update</li>
+                      <li>Creation timestamps</li>
+                    </ul>
+                  </li>
+                  <li>Includes a <strong>custom animated truck graphic</strong> that activates during pipeline execution</li>
+                  <li>Uses background polling to refresh status in real-time</li>
+                </ul>
+            
+                <h5>3. Record Deletion Interface</h5>
+                <ul>
+                  <li>Allows users to select a document type and delete files from Databricks Volumes</li>
+                  <li>Includes confirmation modals to ensure safe deletion</li>
+                  <li>Validates against known document types and paths</li>
+                </ul>
+            
+                <h5>4. Interactive Help / Documentation</h5>
+                <ul>
+                  <li>Dedicated “How to Use Me” tab built into the app</li>
+                  <li>Step-by-step instructions for upload, logs, and deletion workflows</li>
+                  <li>“I Need Help” button available in the delete tab for direct access</li>
+                </ul>
+            
+                <h4>Technical Highlights</h4>
+                <ul>
+                  <li><strong>Dash + Dash Bootstrap Components (DBC)</strong> for layout, styling, and responsive design</li>
+                  <li><strong>Stateful app logic</strong> handled via <code>@callback</code> and <code>dcc.Store</code> components</li>
+                  <li><strong>Databricks SDK</strong> manages secure file I/O, pipeline control, and metadata inspection</li>
+                  <li><strong>Structured volume paths</strong> based on UTC timestamps for organized cloud storage</li>
+                  <li><strong>Config-driven setup</strong> powered by <code>app.yaml</code></li>
+                </ul>
+            
+                <h4>Role & Responsibilities</h4>
+                <ul>
+                  <li>Designed and implemented the full-stack Dash application architecture</li>
+                  <li>Developed custom data classes and caching systems</li>
+                  <li>Integrated and tested file uploads and pipeline triggers using the Databricks SDK</li>
+                  <li>Managed UI/UX flows, modals, feedback alerts, and status transitions</li>
+                  <li>Ensured modular design with reusable components</li>
+                </ul>
+            
+                <h4>Outcomes</h4>
+                <ul>
+                  <li>Empowered users to manage workflows without needing Databricks access</li>
+                  <li>Eliminated the need for manual notebook execution or CLI commands</li>
+                  <li>Increased observability and traceability with live dashboards</li>
+                  <li>Delivered a production-ready, highly maintainable solution</li>
+                </ul>
+            
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>Python 3</li>
+                  <li>Dash (by Plotly)</li>
+                  <li>Dash Bootstrap Components</li>
+                  <li>Databricks SDK</li>
+                  <li>Delta Live Tables (DLT)</li>
+                  <li>Databricks Unity Catalog Volumes</li>
+                  <li>YAML Configuration</li>
+                  <li>dcc.Store, dcc.Upload, dcc.Interval</li>
+                </ul>
+                <h4>Screenshots & Visuals</h4>
+                <div class="modal-image-gallery">
+                  <img src="/assets/img/databricks.png" alt="Screenshot 1" class="modal-thumb" />
+                  <video src="databricks.mp4" controls playsinline preload="metadata" class="modal-video-thumb"></video>
+                </div>
+            
+              `;
+            </script>
         </div>
         <div class="right-content">
 
@@ -142,4 +249,5 @@
     </div>
     </body>
 </html>
+
 
