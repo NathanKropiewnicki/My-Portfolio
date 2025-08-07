@@ -151,15 +151,15 @@
           <a href="assets/pdf/internship.pdf">
         `;
         
-        function openModal() {
+       function openModal() {
           const modal = document.getElementById('modal');
-          modal.classList.add('active');
-          document.body.classList.add('modal-open');
+          modal.classList.add('active'); // show modal
+          document.body.classList.add('modal-open'); // optional: prevent background scroll
         }
         
         function closeModal() {
           const modal = document.getElementById('modal');
-          modal.classList.remove('active');
+          modal.classList.remove('active'); // hide modal
           document.body.classList.remove('modal-open');
         }
 
@@ -184,6 +184,7 @@
         </div>
     </body>
 </html>
+
 
 
 
