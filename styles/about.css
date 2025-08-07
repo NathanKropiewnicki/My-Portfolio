@@ -12,12 +12,6 @@ body {
     font-family: 'JetBrains Mono', monospace;
     background-color: #0c0c0c;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
  .modal-overlay {
       display: none;
       position: fixed;
@@ -445,6 +439,12 @@ nav a:hover {
       flex-wrap: wrap;
     }
   }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
 
 
 
