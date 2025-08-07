@@ -29,13 +29,16 @@ body {
       display: flex;
     }
 
-    .modal-content {
+   .modal-content {
       background-color: white;
       padding: 2rem;
       border-radius: 12px;
       max-width: 600px;
       width: 90%;
-      max-height: 80vh; 
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* Prevent this from scrolling */
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
       font-family: 'JetBrains Mono', monospace;
       position: relative;
@@ -44,6 +47,7 @@ body {
       transition: all 0.25s ease;
       text-align: left;
     }
+
 
     .modal-overlay.active .modal-content {
       transform: scale(1);
@@ -98,7 +102,8 @@ body {
 .modal-body {
   overflow-y: auto;
   padding: 1rem;
-  max-height: 75vh; 
+  max-height: 100%; 
+  flex-grow: 1;      
 }
 .modal-body img {
   max-width: 100%;
@@ -443,6 +448,7 @@ nav a:hover {
   gap: 1.5rem;
   margin-top: 2rem;
 }
+
 
 
 
