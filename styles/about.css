@@ -334,11 +334,6 @@ nav a:hover {
 
 .btn::before {
     content: "";
-    background: linear-gradient(
-        45deg,
-        red, orange, yellow, green,
-        blue, purple, hotpink,red
-    );
     position: absolute;
     top: -2px;
     left: -2px;
@@ -481,6 +476,7 @@ nav a:hover {
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
 
 
 
