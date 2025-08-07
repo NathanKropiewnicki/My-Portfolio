@@ -151,26 +151,22 @@
           <a href="assets/pdf/internship.pdf">
         `;
         
-        function openModal(buttonEl) {
-          const project = buttonEl.closest('.project');
-          const modal = project.querySelector('.modal-overlay');
-          const content = modal.querySelector('.modal-body');
-          content.innerHTML = databricksModalContent;
+        function openModal() {
+          const modal = document.getElementById('modal');
           modal.classList.add('active');
           document.body.classList.add('modal-open');
         }
         
-        function closeModal(closeBtn) {
-          const modal = closeBtn.closest('.modal-overlay');
+        function closeModal() {
+          const modal = document.getElementById('modal');
           modal.classList.remove('active');
           document.body.classList.remove('modal-open');
         }
+
         
-        document.addEventListener('keydown', function (e) {
+       document.addEventListener('keydown', function (e) {
           if (e.key === "Escape") {
-            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
-              modal.classList.remove('active');
-            });
+            closeModal();
           }
         });
     </script>
@@ -185,6 +181,7 @@
         </div>
     </body>
 </html>
+
 
 
 
