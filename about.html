@@ -14,23 +14,38 @@
               margin-top: 2rem;
             }
             
-           .modal-overlay {
-              display: none;
-              position: relative; /* Not fixed */
-              z-index: 1;
-              margin-top: 1rem;
+            .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
             }
             
-           .modal-overlay.active {
-              display: block;
+            .modal-overlay.active {
+            display: flex;
             }
             
             .modal-content {
-              background-color: white;
-              padding: 1.5rem;
-              border-radius: 8px;
-              box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-              font-family: 'JetBrains Mono', monospace;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh; 
+            overflow-y: auto;  
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.25s ease;
+            text-align: left;
             }
             
             
@@ -96,18 +111,10 @@
         <div class="left-content">
             <img class="profile-pic" src="/assets/img/smallface.jpg" alt="Face">
             <div class="grid">
-              <div class="project">
+              <div class="project" onclick="openModal('Databricks File Management and Processing Dashboard', databricksModalContent)">
                 <h2>Databricks Dashboard</h2>
                 <img src="/assets/img/databricks.png" alt="Databricks Icon" class="project-icon" />
-                
-                <button onclick="openModal(this)">Learn More</button>
-            
-                <div class="modal-overlay">
-                  <div class="modal-content">
-                    <span class="modal-close" onclick="closeModal(this)">&times;</span>
-                    <div class="modal-body">
-                        <h4>Outcomes</h4>
-                    </div>
+            </div>
             <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
             <div class="modal-content">
               <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -120,7 +127,7 @@
             const modal = document.getElementById('projectModal');
             const content = document.getElementById('modalContentArea');
             
-            content.innerHTML = `<h2>${title}</h2>${htmlContent}`;
+            content.innerHTML = <h2>${title}</h2>${htmlContent};
             modal.classList.add('active');
             
             // Attach login handler if the modal has the login form
@@ -163,147 +170,228 @@
                 lightboxOverlay.style.display = 'flex';
               }
             });
-            <div class="right-content">
-
-                <h1 class="fade-in2">Nathan Kropiewnicki</h1>
-    
-                <p class="about fade-in">
-                    Hello, my name is Nathan Kropiewnicki, and I am studying computer science 
-                    at Bethel University in Mishawaka Indiana. I am currently looking for an internship 
-                    for this summer for web development, cybersecurity, database, or general IT work. I am currently
-                    working to build my portfolio and hope to demonstrate some of that through this website.
-                </p>
-    
-                <h2 class="fade-in2">Work Experience</h2>
-    
-                <div class="experience fade-in">
-                    <h3><strong>Bettenhausen Automotive</strong></h3>
-                    <h4>Porter</h4>
-                    <ul>
-                        <li>Detailed, washed, and refueled vehicles while ensuring lot organization</li>
-                        <li>Assisted customers with transportation and coordinated vehicle deliveries</li>
-                    </ul>
-                </div>
-    
-                <div class="experience fade-in">
-                    <h3>Campus Store and Mailroom</h3>
-                    <h4>Mailroom Worker/Cashier</h4>
-                    <ul>
-                        <li>Processed package deliveries, sorted and distributed mail</li>
-                        <li>Managed financial transactions and provided customer support</li>
-                    </ul>
-                </div>
-    
-                <div class="experience fade-in">
-                    <h3>Menards</h3>
-                    <h4>Courtesy Patrol</h4>
-                    <ul>
-                        <li>Assisted customers with loading purchases and managed store cart inventory</li>
-                        <li>Maintained store cleanliness and organization</li>
-                    </ul>
-                </div>
-    
-                <div class="experience fade-in">
-                    <h3>Palermos Pizza</h3>
-                    <h4>Food Service Worker</h4>
-                    <ul>
-                        <li>Processed customer orders, managed the register, and handled deliveries</li>
-                        <li>Assisted in inventory intake and scheduling shifts on occasion</li>
-                    </ul>
-                </div>
-                <div class="experience fade-in">
-                    <h3>Ozinga</h3>
-                    <h4>Applications Support Associate</h4>
-                    <ul>
-                        <li>Applied classroom knowledge to real-world business scenarios by supporting data and application workflows across departments</li>
-                        <li>Built, refined, and optimized business reports using Sigma Computing, improving usability and performance</li>
-                        <li>Gained hands-on experience with both software (data platforms, reporting tools) and hardware (imaging laptops, SSD swaps, DBAN processes)</li>
-                        <li>Contributed to ongoing data pipeline enhancements by updating, debugging, and restructuring key tables</li>
-                        <li>Earned multiple certifications, including Azure Databricks, Generative AI Fundamentals, and SQL (Basic & Advanced)</li>
-                        <li>Participated in cross-functional meetings with stakeholders in Salesforce, SCM, and Data Analytics teams</li>
-                        <li>Supported tech team operations by imaging and wiping devices and preparing hardware for deployment</li>
-                        <li>Collaborated with mentors and team members to gain insights into real-world IT support and application development workflows</li>
-                    </ul>
-                </div>
-                <h2 class="fade-in2">Skills</h2>
-                <h3 class="fade-in">Technical</h3>
-    
-                <div class="experience fade-in">
-                    <ul>
-                        <li>C(Basic)</li>
-                        <li>HTML/</li>
-                        <li>Java</li>
-                        <li>Python</li>
-                        <li>SQL</li>
-                    </ul>
-                </div>
-    
-                <h3 class="fade-in">Non-Technical</h3>
-    
-                <div class="experience fade-in">
-                    <ul>
-                        <li>Web Hosting</li>
-                        <li>Computer Hardware</li>
-                    </ul>
-                </div>
-    
-                <h2 class="fade-in2">Revelant Experience</h2>
-                <div class="experience fade-in">
-                    <ul>
-                        <li>Cloud Database Management Simulation: Developed a basic database system</li>
-                    </ul>
-                </div>
-    
-                <h2 class="fade-in2">Certifications / Accreditation</h2>
-                <div class="experience fade-in">
-                    <ul>
-                        <li>Academy Accreditation - Azure Databricks Platform Architect</li>
-                        <li>Academy Accreditation - Databricks Fundamentals</li>
-                        <li>Academy Accreditation - Generative AI Fundamentals</li>
-                        <li>Microsoft Azure AI Essentials: Workloads and Machine Learning on Azure</li>
-                        <li>SQL (Basic) Certificate</li>
-                        <li>SQL (Advanced) Certificate</li>
-                        <li>Hands-On Introduction: SQL</li>
-                        <li>Intermediate SQL - Data Reporting and Analysis</li>
-                        <li>Introduction to Sigma</li>
-                        <li>Networking Foundations : Networking Basics</li>
-                        <li>Networking Foundations : IP Addressing Configuring DNS</li>
-                    </ul>
-                </div>
-    
-                <h2 class="fade-in2">Additional Information</h2>
-                <div class="experience fade-in">
-                    <ul>
-                        <li>Strong interest in database administration, cloud computing, and DevOps practices</li>
-                        <li>Interested about learning and applying new technologies</li>
-                    </ul>
-                </div>
-            </div>
             <script>
-                const databricksModalContent = `
-                  <h4>Overview</h4>
-                  <p>This is a demo modal for the Databricks dashboard.</p>
-                  <!-- Add the rest of your original modal content here -->
-                `;
-                
-                function openModal(buttonEl) {
-                  const project = buttonEl.closest('.project');
-                  const modal = project.querySelector('.modal-overlay');
-                  const content = modal.querySelector('.modal-body');
-                  content.innerHTML = databricksModalContent;
-                  modal.classList.add('active');
-                }
-                
-                function closeModal(closeBtn) {
-                  const modal = closeBtn.closest('.modal-overlay');
-                  modal.classList.remove('active');
-                }
-                </script>
+              const databricksModalContent = 
+                <h4>Overview</h4>
+                <p>
+                  This application is a fully interactive <strong>Dash web dashboard</strong> designed to streamline the process of
+                  <strong>uploading, processing, monitoring, and managing data files</strong> within a
+                  <strong>Databricks Lakehouse environment</strong>.
+                </p>
+            
+                <h4>Key Objectives</h4>
+                <ul>
+                  <li>Simplify file ingestion into Databricks volumes via a secure UI</li>
+                  <li>Allow non-technical users to upload files, trigger processing pipelines, and monitor logs</li>
+                  <li>Automate validation, logging, and pipeline execution</li>
+                  <li>Provide an intuitive interface for deleting data artifacts safely</li>
+                  <li>Display real-time pipeline statuses with playful, brand-aligned UI elements</li>
+                </ul>
+            
+                <h4>Features</h4>
+                <h5>1. Upload & Trigger Pipeline</h5>
+                <ul>
+                  <li>Select from multiple <strong>document types</strong>, each mapped to a configured Databricks volume path</li>
+                  <li>Drag-and-drop or click to upload files via a friendly UI</li>
+                  <li>Files are organized by timestamp in folder structures like <code>/volume/2025/07/15/my_file.json</code></li>
+                  <li>Users can trigger a <strong>DLT pipeline</strong> to process the uploaded file</li>
+                  <li>Includes confirmation modals to prevent accidental execution</li>
+                </ul>
+            
+                <h5>2. Real-Time Pipeline Monitoring</h5>
+                <ul>
+                  <li>Fetches and displays the <strong>Databricks pipeline state</strong> using the SDK</li>
+                  <li>Displays up to 5 recent update logs with:
+                    <ul>
+                      <li>Update ID</li>
+                      <li>State (e.g., RUNNING, FAILED)</li>
+                      <li>Cause of update</li>
+                      <li>Creation timestamps</li>
+                    </ul>
+                  </li>
+                  <li>Includes a <strong>custom animated truck graphic</strong> that activates during pipeline execution</li>
+                  <li>Uses background polling to refresh status in real-time</li>
+                </ul>
+            
+                <h5>3. Record Deletion Interface</h5>
+                <ul>
+                  <li>Allows users to select a document type and delete files from Databricks Volumes</li>
+                  <li>Includes confirmation modals to ensure safe deletion</li>
+                  <li>Validates against known document types and paths</li>
+                </ul>
+            
+                <h5>4. Interactive Help / Documentation</h5>
+                <ul>
+                  <li>Dedicated “How to Use Me” tab built into the app</li>
+                  <li>Step-by-step instructions for upload, logs, and deletion workflows</li>
+                  <li>“I Need Help” button available in the delete tab for direct access</li>
+                </ul>
+            
+                <h4>Technical Highlights</h4>
+                <ul>
+                  <li><strong>Dash + Dash Bootstrap Components (DBC)</strong> for layout, styling, and responsive design</li>
+                  <li><strong>Stateful app logic</strong> handled via <code>@callback</code> and <code>dcc.Store</code> components</li>
+                  <li><strong>Databricks SDK</strong> manages secure file I/O, pipeline control, and metadata inspection</li>
+                  <li><strong>Structured volume paths</strong> based on UTC timestamps for organized cloud storage</li>
+                  <li><strong>Config-driven setup</strong> powered by <code>app.yaml</code></li>
+                </ul>
+            
+                <h4>Role & Responsibilities</h4>
+                <ul>
+                  <li>Designed and implemented the full-stack Dash application architecture</li>
+                  <li>Developed custom data classes and caching systems</li>
+                  <li>Integrated and tested file uploads and pipeline triggers using the Databricks SDK</li>
+                  <li>Managed UI/UX flows, modals, feedback alerts, and status transitions</li>
+                  <li>Ensured modular design with reusable components</li>
+                </ul>
+            
+                <h4>Outcomes</h4>
+                <ul>
+                  <li>Empowered users to manage workflows without needing Databricks access</li>
+                  <li>Eliminated the need for manual notebook execution or CLI commands</li>
+                  <li>Increased observability and traceability with live dashboards</li>
+                  <li>Delivered a production-ready, highly maintainable solution</li>
+                </ul>
+            
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>Python 3</li>
+                  <li>Dash (by Plotly)</li>
+                  <li>Dash Bootstrap Components</li>
+                  <li>Databricks SDK</li>
+                  <li>Delta Live Tables (DLT)</li>
+                  <li>Databricks Unity Catalog Volumes</li>
+                  <li>YAML Configuration</li>
+                  <li>dcc.Store, dcc.Upload, dcc.Interval</li>
+                </ul>
+                <h4>Screenshots & Visuals</h4>
+                <div class="modal-image-gallery">
+                  <img src="/assets/img/databricks.png" alt="Screenshot 1" class="modal-thumb" />
+                  <video src="databricks.mp4" controls playsinline preload="metadata" class="modal-video-thumb"></video>
+                </div>
+            
+              ;
+            </script>
+        </div>
+        <div class="right-content">
+
+            <h1 class="fade-in2">Nathan Kropiewnicki</h1>
+
+            <p class="about fade-in">
+                Hello, my name is Nathan Kropiewnicki, and I am studying computer science 
+                at Bethel University in Mishawaka Indiana. I am currently looking for an internship 
+                for this summer for web development, cybersecurity, database, or general IT work. I am currently
+                working to build my portfolio and hope to demonstrate some of that through this website.
+            </p>
+
+            <h2 class="fade-in2">Work Experience</h2>
+
+            <div class="experience fade-in">
+                <h3><strong>Bettenhausen Automotive</strong></h3>
+                <h4>Porter</h4>
+                <ul>
+                    <li>Detailed, washed, and refueled vehicles while ensuring lot organization</li>
+                    <li>Assisted customers with transportation and coordinated vehicle deliveries</li>
+                </ul>
+            </div>
+
+            <div class="experience fade-in">
+                <h3>Campus Store and Mailroom</h3>
+                <h4>Mailroom Worker/Cashier</h4>
+                <ul>
+                    <li>Processed package deliveries, sorted and distributed mail</li>
+                    <li>Managed financial transactions and provided customer support</li>
+                </ul>
+            </div>
+
+            <div class="experience fade-in">
+                <h3>Menards</h3>
+                <h4>Courtesy Patrol</h4>
+                <ul>
+                    <li>Assisted customers with loading purchases and managed store cart inventory</li>
+                    <li>Maintained store cleanliness and organization</li>
+                </ul>
+            </div>
+
+            <div class="experience fade-in">
+                <h3>Palermos Pizza</h3>
+                <h4>Food Service Worker</h4>
+                <ul>
+                    <li>Processed customer orders, managed the register, and handled deliveries</li>
+                    <li>Assisted in inventory intake and scheduling shifts on occasion</li>
+                </ul>
+            </div>
+            <div class="experience fade-in">
+                <h3>Ozinga</h3>
+                <h4>Applications Support Associate</h4>
+                <ul>
+                    <li>Applied classroom knowledge to real-world business scenarios by supporting data and application workflows across departments</li>
+                    <li>Built, refined, and optimized business reports using Sigma Computing, improving usability and performance</li>
+                    <li>Gained hands-on experience with both software (data platforms, reporting tools) and hardware (imaging laptops, SSD swaps, DBAN processes)</li>
+                    <li>Contributed to ongoing data pipeline enhancements by updating, debugging, and restructuring key tables</li>
+                    <li>Earned multiple certifications, including Azure Databricks, Generative AI Fundamentals, and SQL (Basic & Advanced)</li>
+                    <li>Participated in cross-functional meetings with stakeholders in Salesforce, SCM, and Data Analytics teams</li>
+                    <li>Supported tech team operations by imaging and wiping devices and preparing hardware for deployment</li>
+                    <li>Collaborated with mentors and team members to gain insights into real-world IT support and application development workflows</li>
+                </ul>
+            </div>
+            <h2 class="fade-in2">Skills</h2>
+            <h3 class="fade-in">Technical</h3>
+
+            <div class="experience fade-in">
+                <ul>
+                    <li>C(Basic)</li>
+                    <li>HTML/</li>
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+
+            <h3 class="fade-in">Non-Technical</h3>
+
+            <div class="experience fade-in">
+                <ul>
+                    <li>Web Hosting</li>
+                    <li>Computer Hardware</li>
+                </ul>
+            </div>
+
+            <h2 class="fade-in2">Revelant Experience</h2>
+            <div class="experience fade-in">
+                <ul>
+                    <li>Cloud Database Management Simulation: Developed a basic database system</li>
+                </ul>
+            </div>
+
+            <h2 class="fade-in2">Certifications / Accreditation</h2>
+            <div class="experience fade-in">
+                <ul>
+                    <li>Academy Accreditation - Azure Databricks Platform Architect</li>
+                    <li>Academy Accreditation - Databricks Fundamentals</li>
+                    <li>Academy Accreditation - Generative AI Fundamentals</li>
+                    <li>Microsoft Azure AI Essentials: Workloads and Machine Learning on Azure</li>
+                    <li>SQL (Basic) Certificate</li>
+                    <li>SQL (Advanced) Certificate</li>
+                    <li>Hands-On Introduction: SQL</li>
+                    <li>Intermediate SQL - Data Reporting and Analysis</li>
+                    <li>Introduction to Sigma</li>
+                    <li>Networking Foundations : Networking Basics</li>
+                    <li>Networking Foundations : IP Addressing Configuring DNS</li>
+                </ul>
+            </div>
+
+            <h2 class="fade-in2">Additional Information</h2>
+            <div class="experience fade-in">
+                <ul>
+                    <li>Strong interest in database administration, cloud computing, and DevOps practices</li>
+                    <li>Interested about learning and applying new technologies</li>
+                </ul>
+            </div>
+        </div>
     </div>
     </body>
 </html>
-
-
 
 
 
