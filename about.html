@@ -25,16 +25,6 @@
         
           <div class="project">
             <button class="btn" onclick="openModal(this)">Summer Internship</button>
-        
-            <div class="modal-overlay">
-              <div class="modal-content">
-                <span class="modal-close" onclick="closeModal(this)">&times;</span>
-                <div class="modal-body">
-                  <h2>Internship at Super Cool Co</h2>
-                  <p>Worked on cool stuff.</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -184,8 +174,18 @@
           }
         });
     </script>
+        <div class="modal-overlay" id="modal">
+          <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+              <h2>Internship at Super Cool Co</h2>
+              <p>Worked on cool stuff.</p>
+            </div>
+          </div>
+        </div>
     </body>
 </html>
+
 
 
 
