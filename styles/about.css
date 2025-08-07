@@ -28,11 +28,11 @@ body {
   display: flex;
 }
 .modal-content {
-  max-height: 90vh;   
-  overflow-y: auto;      
+  max-height: 90vh;          
+  overflow-y: auto;          
+  background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
-  background-color: white; /* or your theme color */
   position: relative;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
@@ -47,11 +47,10 @@ body {
     margin-top: 20px;
 }
 .modal-body img {
-  max-width: 100%;
-  height: auto;
-  margin: 1rem 0;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 1rem auto;
 }
 #glow {
     position: absolute;
@@ -431,6 +430,7 @@ transition: transform 0.2s ease;
 transform: scale(1.05);
 box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
+
 
 
 
