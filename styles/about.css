@@ -23,7 +23,6 @@ body {
       backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
-      overflow: hidden;
     }
 
     .modal-overlay.active {
@@ -48,6 +47,7 @@ body {
       transition: all 0.25s ease;
       text-align: left;
     }
+
 
     .modal-overlay.active .modal-content {
       transform: scale(1);
@@ -100,10 +100,12 @@ body {
     margin-top: 20px;
 }
 .modal-body {
+  overflow-y: auto;
   padding: 1rem;
   max-height: 100%; 
-  flex-grow: 1;      
+  flex-grow: 1;     
 }
+
 .modal-body img {
   max-width: 100%;
   height: auto;
