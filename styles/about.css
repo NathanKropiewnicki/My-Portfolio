@@ -28,13 +28,16 @@ body {
   display: flex;
 }
 .modal-content {
-  max-height: 90vh;          
-  overflow-y: auto;          
-  background-color: white;
-  padding: 1.5rem;
+  background: #fff;
+  max-height: 90vh;
+  width: 90%;
+  max-width: 800px;
+  overflow: hidden;
   border-radius: 10px;
   position: relative;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 .modal-overlay.active .modal-content {
   transform: scale(1);
@@ -45,6 +48,11 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+.modal-body {
+  overflow-y: auto;
+  max-height: 75vh;
+  padding-right: 1rem; 
 }
 .modal-body img {
   width: 100%;
@@ -430,6 +438,7 @@ transition: transform 0.2s ease;
 transform: scale(1.05);
 box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
+
 
 
 
