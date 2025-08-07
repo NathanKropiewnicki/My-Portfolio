@@ -23,7 +23,6 @@ body {
       backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
-      overflow: hidden;
     }
 
     .modal-overlay.active {
@@ -447,6 +446,7 @@ nav a:hover {
   gap: 1.5rem;
   margin-top: 2rem;
 }
+
 
 
 
