@@ -63,13 +63,16 @@
    <script>
      window.addEventListener("load", () => {
        const loader = document.getElementById("loader");
-       loader.style.opacity = "0";
        setTimeout(() => {
-         loader.style.display = "none";
-       }, 1000); // delay slightly longer for slow fade
+         loader.style.opacity = "0";
+         setTimeout(() => {
+           loader.style.display = "none";
+         }, 600); // match fade duration
+       }, 2000); // minimum display time
      });
    </script>
 </html>
+
 
 
 
