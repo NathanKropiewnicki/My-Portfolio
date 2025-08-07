@@ -6,6 +6,87 @@
         <link rel="stylesheet" href="/styles/about.css">
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
         <title>Nathan Kropiewnicki</title>
+        <style>
+            .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            }
+            
+            .modal-overlay.active {
+            display: flex;
+            }
+            
+            .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh; 
+            overflow-y: auto;  
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.25s ease;
+            text-align: left;
+            }
+            
+            
+            .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+            }
+            
+            .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            }
+            
+            .modal-close:hover {
+            color: #000;
+            }
+            
+            body.modal-open {
+            overflow: hidden;
+            }
+            
+            .modal-image-gallery {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            }
+            
+            .modal-thumb {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+            }
+            
+            .modal-thumb:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            }
+        </style>
     </head>
     <body>
         <script src="/scripts/glow.js"></script>
@@ -249,5 +330,6 @@
     </div>
     </body>
 </html>
+
 
 
