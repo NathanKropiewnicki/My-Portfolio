@@ -98,7 +98,7 @@ nav a:hover {
 }
 
 .right-content {
-    flex: 2 1 500px;
+    flex: 2 1 400px;
     color: white;
 }
 .right-content h1 {
@@ -332,6 +332,7 @@ nav a:hover {
       flex-wrap: wrap;
     }
   }
+
 
 
 
