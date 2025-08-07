@@ -100,7 +100,6 @@ body {
     margin-top: 20px;
 }
 .modal-body {
-  overflow-y: auto;
   padding: 1rem;
   max-height: 100%; 
   flex-grow: 1;      
@@ -448,6 +447,7 @@ nav a:hover {
   gap: 1.5rem;
   margin-top: 2rem;
 }
+
 
 
 
