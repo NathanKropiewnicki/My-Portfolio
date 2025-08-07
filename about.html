@@ -146,69 +146,30 @@
         </div>
     </div>
     <script>
-        function openModal(title, htmlContent) {
-        const modal = document.getElementById('projectModal');
-        const content = document.getElementById('modalContentArea');
-      
-        content.innerHTML = `<h2>${title}</h2>${htmlContent}`;
-        modal.classList.add('active');
-      
-        // Attach login handler if the modal has the login form
-        const loginForm = document.getElementById('loginForm');
-        if (loginForm) {
-          loginForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const pw = document.getElementById('pw').value;
-            if (pw === 'dashboard123') {
-              localStorage.setItem('authToken', 'FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY');
-              window.location.href = 'dashboard.html';
-            } else {
-              alert('Wrong password');
-            }
-          });
-        }
-      }
-      
-        function closeModal() {
-          document.getElementById('projectModal').classList.remove('active');
-        }
-      
-        document.getElementById('projectModal').addEventListener('click', function (e) {
-          if (e.target === this) closeModal();
-        });
-        document.addEventListener('click', function(event) {
-          const lightboxOverlay = document.getElementById('lightboxOverlay');
-          const img = document.getElementById('lightboxImage');
-          const vid = document.getElementById('lightboxVideo');
+        const databricksModalContent = `
+          <h1>Hello</h1>
+          <a href="assets/pdf/internship.pdf">
+        `;
         
-          if (event.target.classList.contains('modal-thumb')) {
-            img.src = event.target.getAttribute('src');
-            img.style.display = 'block';
-            vid.style.display = 'none';
-            lightboxOverlay.style.display = 'flex';
-          } else if (event.target.classList.contains('modal-video-thumb')) {
-            vid.src = event.target.getAttribute('src');
-            vid.style.display = 'block';
-            img.style.display = 'none';
-            lightboxOverlay.style.display = 'flex';
+       function openModal() {
+          const modal = document.getElementById('modal');
+          modal.classList.add('active'); // show modal
+          document.body.classList.add('modal-open'); // optional: prevent background scroll
+        }
+        
+        function closeModal() {
+          const modal = document.getElementById('modal');
+          modal.classList.remove('active'); // hide modal
+          document.body.classList.remove('modal-open');
+        }
+
+        
+       document.addEventListener('keydown', function (e) {
+          if (e.key === "Escape") {
+            closeModal();
           }
         });
-        
-        function closeLightbox() {
-          const lightboxOverlay = document.getElementById('lightboxOverlay');
-          document.getElementById('lightboxImage').style.display = 'none';
-          document.getElementById('lightboxVideo').pause(); // Stop video playback
-          document.getElementById('lightboxVideo').src = '';
-          document.getElementById('lightboxVideo').style.display = 'none';
-          lightboxOverlay.style.display = 'none';
-        }
-    
-        // Also close lightbox when clicking outside the image
-        document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
-          if (e.target === this) closeLightbox();
-        });
-    
-      </script>
+    </script>
         <div class="modal-overlay" id="modal">
           <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -221,9 +182,6 @@
         </div>
     </body>
 </html>
-
-
-
 
 
 
