@@ -23,6 +23,7 @@ body {
       backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     .modal-overlay.active {
