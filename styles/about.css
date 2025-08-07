@@ -136,7 +136,7 @@ nav a:hover {
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
-  ax-width: 400px;
+  max-width: 400px;
 }
 
 .right-content {
@@ -426,6 +426,7 @@ transition: transform 0.2s ease;
 transform: scale(1.05);
 box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
+
 
 
 
