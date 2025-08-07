@@ -28,14 +28,12 @@ body {
   display: flex;
 }
 .modal-content {
-  background: #fff;
-  max-height: 90vh;
+  background: white;
   width: 90%;
   max-width: 800px;
-  overflow: hidden;
+  max-height: 90vh;
   border-radius: 10px;
-  position: relative;
-  padding: 1rem;
+  overflow: hidden; /* Important */
   display: flex;
   flex-direction: column;
 }
@@ -51,12 +49,12 @@ body {
 }
 .modal-body {
   overflow-y: auto;
-  max-height: 75vh;
-  padding-right: 1rem; 
+  padding: 1rem;
+  max-height: 75vh; 
 }
 .modal-body img {
-  width: 100%;
-  max-width: 500px;
+  max-width: 100%;
+  height: auto;
   display: block;
   margin: 1rem auto;
 }
@@ -438,6 +436,7 @@ transition: transform 0.2s ease;
 transform: scale(1.05);
 box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
+
 
 
 
