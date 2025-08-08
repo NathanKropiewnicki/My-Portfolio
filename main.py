@@ -20,10 +20,6 @@ class AimlabStat(BaseModel):
 
 @app.post("/upload")
 async def upload_stat(stat: AimlabStat, request: Request):
-    # Check auth (optional)
-    # auth = request.headers.get("Authorization")
-    # if auth != "Bearer your_api_key_here":
-    #     raise HTTPException(status_code=401, detail="Unauthorized")
 
     database.append(stat)
     return {"message": "Stat received", "total_stats": len(database)}
@@ -34,4 +30,5 @@ async def get_all_stats():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
