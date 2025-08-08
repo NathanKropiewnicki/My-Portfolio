@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('thankYouModal');
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // <- stop default first
+        event.preventDefault(); 
     
         const emailInput = document.getElementById('email');
         const emailValue = emailInput.value.trim();
@@ -39,3 +39,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
