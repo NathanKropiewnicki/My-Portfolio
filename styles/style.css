@@ -10,7 +10,7 @@
   }
 body {
     font-family: 'JetBrains Mono', monospace;
-    background-color: #0c0c0c;
+    background-color: white;
 }
 .nav-wrapper {
     display: flex;
@@ -377,6 +377,7 @@ nav a:hover {
       flex-wrap: wrap;
     }
   }
+
 
 
 
