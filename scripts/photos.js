@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxOverlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
-    // Hide image until loaded
     lightboxImg.style.display = 'none';
     lightboxImg.style.objectFit = 'contain';
 
@@ -81,3 +80,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
