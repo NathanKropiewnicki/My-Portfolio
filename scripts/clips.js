@@ -19,6 +19,7 @@ function closeLightbox() {
     lightboxSource.src = "";
     lightboxVideo.load();
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     const swiper = new Swiper('.clips-swiper', {
       loop: true,
@@ -42,4 +43,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
   
