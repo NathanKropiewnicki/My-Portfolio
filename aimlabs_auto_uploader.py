@@ -4,7 +4,6 @@ import json
 import requests
 from datetime import datetime
 
-# Replace with your actual endpoint and API key
 API_ENDPOINT = "https://aimlabs-reporting-tool.onrender.com"
 API_KEY = "FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY"
 
@@ -19,11 +18,11 @@ def upload_data(data):
     try:
         response = requests.post(API_ENDPOINT, headers=headers, json=data)
         if response.status_code == 200:
-            print(f"[{datetime.now()}] ✅ Uploaded: {data['scenario']}, Score: {data['score']}")
+            print(f"[{datetime.now()}] Uploaded: {data['scenario']}, Score: {data['score']}")
         else:
-            print(f"[{datetime.now()}] ❌ Upload failed: {response.status_code}, {response.text}")
+            print(f"[{datetime.now()}] Upload failed: {response.status_code}, {response.text}")
     except Exception as e:
-        print(f"[{datetime.now()}] ❌ Exception during upload: {e}")
+        print(f"[{datetime.now()}] Exception during upload: {e}")
 
 def parse_result_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -44,20 +43,20 @@ def parse_result_file(file_path):
     }
 
 def watch_directory():
-    print(f"👀 Watching: {SAVE_DIR}")
+    print(f"Watching: {SAVE_DIR}")
     while True:
         files = [f for f in os.listdir(SAVE_DIR) if f.endswith(".json")]
         new_files = set(files) - SEEN_FILES
 
         for file in sorted(new_files):
             file_path = os.path.join(SAVE_DIR, file)
-            print(f"[{datetime.now()}] 📄 New file detected: {file}")
+            print(f"[{datetime.now()}]New file detected: {file}")
 
             data = parse_result_file(file_path)
             if data:
                 upload_data(data)
             else:
-                print(f"⚠️ Could not parse {file}")
+                print(f"Could not parse {file}")
 
             SEEN_FILES.add(file)
 
@@ -65,3 +64,4 @@ def watch_directory():
 
 if __name__ == "__main__":
     watch_directory()
+
