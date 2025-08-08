@@ -23,13 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Accept': 'application/json'
             }
         }).then(responseData => {
-            // Show the modal
             modal.style.display = 'block';
 
             // Reset the form
             form.reset();
 
-            // Auto-hide modal after 3 seconds
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 3000);
@@ -39,4 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
 
