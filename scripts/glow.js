@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     glow.id = "glow";
     document.body.appendChild(glow);
 
-    let mouseX = 0, mouseY = 0;  // Actual cursor position
-    let glowX = 0, glowY = 0;    // Glow position
-    const delayFactor = .07;     // Adjust this for more or less delay (0.1 = slow, 0.3 = faster)
+    let mouseX = 0, mouseY = 0;  
+    let glowX = 0, glowY = 0;   
+    const delayFactor = .07;    
 
     document.addEventListener("mousemove", (e) => {
         mouseX = e.pageX;
@@ -24,3 +24,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animateGlow(); // Start animation loop
 });
+
