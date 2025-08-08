@@ -1,762 +1,757 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/styles/projects.css" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
-  <title>Nathan Kropiewnicki</title>
-  <style>
-    /* Project Grid Styling */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .project {
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-family: 'JetBrains Mono', monospace;
-      padding: 1rem;
-      text-align: center;
-      margin-left: 20px;
-    }
-
-    .project h2 {
-      font-size: 1.1rem;
-      margin: 0;
-    }
-
-    .project img {
-      height: 150px;
-    }
-
-    .project-icon {
-      width: 100%;       /* fills the container’s width */
-      height: auto;      /* keeps aspect ratio */
-      object-fit: contain; /* ensures image doesn’t stretch weirdly */
-      margin-bottom: 0.5rem;
-      border-radius: 6px; /* optional, for nice rounded corners */
-    }
-    
-    .project:hover {
-      background-color: #f0f0f0;
-    }
-
-    /* Modal Styling */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh; 
-      overflow-y: auto;  
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-      font-family: 'JetBrains Mono', monospace;
-      position: relative;
-      transform: scale(0.95);
-      opacity: 0;
-      transition: all 0.25s ease;
-       text-align: left;
-    }
-
-
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
-      opacity: 1;
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #666;
-    }
-
-    .modal-close:hover {
-      color: #000;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    .modal-image-gallery {
-      margin-top: 1.5rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .modal-thumb {
-      width: 100px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
-    }
-    
-    .modal-thumb:hover {
-      transform: scale(1.05);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    }
-
-    .lightbox-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1100;
-    }
-    
-    .lightbox-overlay img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-    }
-    
-    .lightbox-close {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      font-size: 2.5rem;
-      color: white;
-      cursor: pointer;
-      user-select: none;
-      z-index: 1101;
-    }
-    
-    .modal-thumb,
-    .modal-video-thumb {
-      width: 100px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
-    }
-    
-    .modal-video-thumb:hover {
-      transform: scale(1.05);
-      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 600px) {
-      .modal-content {
-        padding: 1.2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <script src="/scripts/glow.js"></script>
-
-  <div class="nav-wrapper">
-    <nav class="nav">
-      <a href="index.html"><img src="/assets/svg/home.svg" />Home</a>
-      <a href="about.html"><img src="/assets/svg/about.svg" />About</a>
-      <a href="projects.html"><img src="/assets/svg/projects.svg" />Projects</a>
-      <a href="contact.html"><img src="/assets/svg/contact.svg" />Contact</a>
-      <!--<a href="photos.html"><img src="/assets/svg/photos.svg" />Photos</a> -->
-      <a href="clips.html"><img src="/assets/svg/photos.svg" />Esports</a>
-    </nav>
-  </div>
-
-  <main class="main-content">
-    <h1 style="color: white;">My Projects</h1>
-
-    <div class="grid">
-      <div class="project" onclick="openModal('Databricks File Management and Processing Dashboard', databricksModalContent)">
-        <h2>Databricks Dashboard</h2>
-        <img src="/assets/img/databricks.png" alt="Databricks Icon" class="project-icon" />
-      </div>
-
-      <div class="project" onclick="openModal('Devotional App', databricksModalContent2)">
-        <h2>Devotional App</h2>
-        <img src="/assets/img/workin.png" alt="Work in Progress" class="project-icon" />
-      </div>
-
-      <div class="project" onclick="openModal('Typing Test', databricksModalContent3)">
-        <h2>Typing Test</h2>
-        <img src="/assets/img/typing.png" alt="Typing Icon" class="project-icon" />
-      </div>
-
-      <div class="project" onclick="openModal('Aimlabs Reporting Tool', databricksModalContent4)">
-        <h2>Aimlabs Reporting Tool</h2>
-        <img src="/assets/img/aimlabs.png" alt="Aimlabs Icon" class="project-icon" />
-      </div>
-
-      <div class="project" onclick="openModal('Esports Lab Automation', databricksModalContent5)">
-        <h2>Esports Lab Automation</h2>
-        <img src="/assets/img/lab.png" alt="Lab Icon" class="project-icon" />
-      </div>
-
-      <div class="project" onclick="openModal('Small Projects', databricksModalContent6)">
-        <h2>Small Python Projects</h2>
-        <img src="/assets/img/python.png" alt="Python Icon" class="project-icon" />
-      </div>
-
-    </div>
-  </main>
-
-  <!-- Modal Overlay -->
-  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeModal()">&times;</span>
-      <div id="modalContentArea"></div>
-    </div>
-  </div>
-
-  <script>
-    function openModal(title, htmlContent) {
-    const modal = document.getElementById('projectModal');
-    const content = document.getElementById('modalContentArea');
-  
-    content.innerHTML = `<h2>${title}</h2>${htmlContent}`;
-    modal.classList.add('active');
-  
-    // Attach login handler if the modal has the login form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-      loginForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const pw = document.getElementById('pw').value;
-        if (pw === 'dashboard123') {
-          localStorage.setItem('authToken', 'FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY');
-          window.location.href = 'dashboard.html';
-        } else {
-          alert('Wrong password');
-        }
-      });
-    }
-  }
-  
-    function closeModal() {
-      document.getElementById('projectModal').classList.remove('active');
-    }
-  
-    document.getElementById('projectModal').addEventListener('click', function (e) {
-      if (e.target === this) closeModal();
-    });
-    document.addEventListener('click', function(event) {
-      const lightboxOverlay = document.getElementById('lightboxOverlay');
-      const img = document.getElementById('lightboxImage');
-      const vid = document.getElementById('lightboxVideo');
-    
-      if (event.target.classList.contains('modal-thumb')) {
-        img.src = event.target.getAttribute('src');
-        img.style.display = 'block';
-        vid.style.display = 'none';
-        lightboxOverlay.style.display = 'flex';
-      } else if (event.target.classList.contains('modal-video-thumb')) {
-        vid.src = event.target.getAttribute('src');
-        vid.style.display = 'block';
-        img.style.display = 'none';
-        lightboxOverlay.style.display = 'flex';
-      }
-    });
-    
-    function closeLightbox() {
-      const lightboxOverlay = document.getElementById('lightboxOverlay');
-      document.getElementById('lightboxImage').style.display = 'none';
-      document.getElementById('lightboxVideo').pause(); // Stop video playback
-      document.getElementById('lightboxVideo').src = '';
-      document.getElementById('lightboxVideo').style.display = 'none';
-      lightboxOverlay.style.display = 'none';
-    }
-
-    // Also close lightbox when clicking outside the image
-    document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
-      if (e.target === this) closeLightbox();
-    });
-
-  </script>
-  <script>
-  const databricksModalContent = `
-    <h4>Overview</h4>
-    <p>
-      This application is a fully interactive <strong>Dash web dashboard</strong> designed to streamline the process of
-      <strong>uploading, processing, monitoring, and managing data files</strong> within a
-      <strong>Databricks Lakehouse environment</strong>.
-    </p>
-
-    <h4>Key Objectives</h4>
-    <ul>
-      <li>Simplify file ingestion into Databricks volumes via a secure UI</li>
-      <li>Allow non-technical users to upload files, trigger processing pipelines, and monitor logs</li>
-      <li>Automate validation, logging, and pipeline execution</li>
-      <li>Provide an intuitive interface for deleting data artifacts safely</li>
-      <li>Display real-time pipeline statuses with playful, brand-aligned UI elements</li>
-    </ul>
-
-    <h4>Features</h4>
-    <h5>1. Upload & Trigger Pipeline</h5>
-    <ul>
-      <li>Select from multiple <strong>document types</strong>, each mapped to a configured Databricks volume path</li>
-      <li>Drag-and-drop or click to upload files via a friendly UI</li>
-      <li>Files are organized by timestamp in folder structures like <code>/volume/2025/07/15/my_file.json</code></li>
-      <li>Users can trigger a <strong>DLT pipeline</strong> to process the uploaded file</li>
-      <li>Includes confirmation modals to prevent accidental execution</li>
-    </ul>
-
-    <h5>2. Real-Time Pipeline Monitoring</h5>
-    <ul>
-      <li>Fetches and displays the <strong>Databricks pipeline state</strong> using the SDK</li>
-      <li>Displays up to 5 recent update logs with:
-        <ul>
-          <li>Update ID</li>
-          <li>State (e.g., RUNNING, FAILED)</li>
-          <li>Cause of update</li>
-          <li>Creation timestamps</li>
-        </ul>
-      </li>
-      <li>Includes a <strong>custom animated truck graphic</strong> that activates during pipeline execution</li>
-      <li>Uses background polling to refresh status in real-time</li>
-    </ul>
-
-    <h5>3. Record Deletion Interface</h5>
-    <ul>
-      <li>Allows users to select a document type and delete files from Databricks Volumes</li>
-      <li>Includes confirmation modals to ensure safe deletion</li>
-      <li>Validates against known document types and paths</li>
-    </ul>
-
-    <h5>4. Interactive Help / Documentation</h5>
-    <ul>
-      <li>Dedicated “How to Use Me” tab built into the app</li>
-      <li>Step-by-step instructions for upload, logs, and deletion workflows</li>
-      <li>“I Need Help” button available in the delete tab for direct access</li>
-    </ul>
-
-    <h4>Technical Highlights</h4>
-    <ul>
-      <li><strong>Dash + Dash Bootstrap Components (DBC)</strong> for layout, styling, and responsive design</li>
-      <li><strong>Stateful app logic</strong> handled via <code>@callback</code> and <code>dcc.Store</code> components</li>
-      <li><strong>Databricks SDK</strong> manages secure file I/O, pipeline control, and metadata inspection</li>
-      <li><strong>Structured volume paths</strong> based on UTC timestamps for organized cloud storage</li>
-      <li><strong>Config-driven setup</strong> powered by <code>app.yaml</code></li>
-    </ul>
-
-    <h4>Role & Responsibilities</h4>
-    <ul>
-      <li>Designed and implemented the full-stack Dash application architecture</li>
-      <li>Developed custom data classes and caching systems</li>
-      <li>Integrated and tested file uploads and pipeline triggers using the Databricks SDK</li>
-      <li>Managed UI/UX flows, modals, feedback alerts, and status transitions</li>
-      <li>Ensured modular design with reusable components</li>
-    </ul>
-
-    <h4>Outcomes</h4>
-    <ul>
-      <li>Empowered users to manage workflows without needing Databricks access</li>
-      <li>Eliminated the need for manual notebook execution or CLI commands</li>
-      <li>Increased observability and traceability with live dashboards</li>
-      <li>Delivered a production-ready, highly maintainable solution</li>
-    </ul>
-
-    <h4>Technologies Used</h4>
-    <ul>
-      <li>Python 3</li>
-      <li>Dash (by Plotly)</li>
-      <li>Dash Bootstrap Components</li>
-      <li>Databricks SDK</li>
-      <li>Delta Live Tables (DLT)</li>
-      <li>Databricks Unity Catalog Volumes</li>
-      <li>YAML Configuration</li>
-      <li>dcc.Store, dcc.Upload, dcc.Interval</li>
-    </ul>
-    <h4>Screenshots & Visuals</h4>
-    <div class="modal-image-gallery">
-      <img src="/assets/img/databricks.png" alt="Screenshot 1" class="modal-thumb" />
-      <video src="databricks.mp4" controls playsinline preload="metadata" class="modal-video-thumb"></video>
-    </div>
-
-  `;
-  const databricksModalContent2 = `
-    <section id="portfolio-journal-app">
-      <h2>Spiritual Reflection Journal App</h2>
-      <p><strong>Tech Stack:</strong> SwiftUI · Core Data · AppStorage · MVVM Architecture</p>
-    
-      <p>
-        I’m developing a multi-tab iOS app designed to help users reflect on their spiritual and emotional well-being through daily journaling. 
-        The app includes three main sections:
-      </p>
-    
-      <h3>Current Features:</h3>
-      <ul>
-        <li>
-          <strong>Gratitude Journal</strong><br>
-          A section for users to log daily gratitude entries. Each entry is timestamped, saved in Core Data, and grouped by date in a clean list UI. 
-          Swipe actions allow editing or deleting entries inline.
-        </li>
-        <li>
-          <strong>Reflection Journal</strong><br>
-          Prompts users to reflect on their day with placeholder guidance. Supports color-themed customization based on user preference via <code>@AppStorage</code>. 
-          Reflection entries are persisted in Core Data and grouped by date.
-        </li>
-        <li>
-          <strong>Prayer Journal</strong><br>
-          Users can categorize entries into “Request,” “Reflection,” or “Answered Prayer” using a segmented control. 
-          Includes Core Data support with custom grouping and inline entry editing or deletion.
-        </li>
-        <li>
-          <strong>Dynamic Themes</strong><br>
-          Users can choose a preferred background (white, dark, beige, light gray), which applies consistently across all views using <code>@AppStorage</code>.
-        </li>
-        <li>
-          <strong>Data Persistence</strong><br>
-          All journal data is stored locally using Core Data, allowing full offline access and long-term storage of journal history.
-        </li>
-      </ul>
-    
-      <h3>Planned Features:</h3>
-      <ul>
-        <li><strong>Search and Filtering</strong> – Search/filter entries by keyword, date, or category.</li>
-        <li><strong>iCloud Syncing</strong> – Sync entries across devices using CloudKit.</li>
-        <li><strong>Daily Notifications</strong> – Remind users to journal each day and build consistency.</li>
-        <li><strong>Verse of the Day Integration</strong> – Display a new Bible verse daily as a spiritual prompt.</li>
-        <li><strong>Export Entries</strong> – Allow users to export journal entries as PDF or text.</li>
-      </ul>
-    
-      <p>
-        This project showcases my ability to work with Core Data, SwiftUI components, app architecture, and data persistence — 
-        while also designing for a real-world use case: emotional and spiritual growth through intentional journaling.
-      </p>
-    </section>
-  `;
-  const databricksModalContent3 = `
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/projects.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+    <title>Nathan Kropiewnicki</title>
     <style>
-      #test-text {
-        margin-bottom: 1rem;
-        font-weight: bold;
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
       }
-      #input {
-        width: 100%;
-        font-size: 16px;
-        padding: 10px;
-        margin-bottom: 1rem;
-        font-family: monospace;
-      }
-      #results p {
-        margin: 0.2rem 0;
-      }
-      #results {
-        margin-top: 1rem;
-      }
-      button {
-        margin-top: 1rem;
-        padding: 8px 16px;
-        border: none;
-        background-color: #333;
-        color: white;
-        border-radius: 5px;
+  
+      .project {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
         cursor: pointer;
+        font-family: 'JetBrains Mono', monospace;
+        padding: 1rem;
+        text-align: center;
+        margin-left: 20px;
       }
-      button:hover {
-        background-color: #555;
+  
+      .project h2 {
+        font-size: 1.1rem;
+        margin: 0;
+      }
+  
+      .project img {
+        height: 150px;
+      }
+  
+      .project-icon {
+        width: 100%;       
+        height: auto;     
+        object-fit: contain; 
+        margin-bottom: 0.5rem;
+        border-radius: 6px;
+      }
+      
+      .project:hover {
+        background-color: #f0f0f0;
+      }
+  
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0; left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .modal-overlay.active {
+        display: flex;
+      }
+  
+      .modal-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh; 
+        overflow-y: auto;  
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+        font-family: 'JetBrains Mono', monospace;
+        position: relative;
+        transform: scale(0.95);
+        opacity: 0;
+        transition: all 0.25s ease;
+         text-align: left;
+      }
+  
+      .modal-overlay.active .modal-content {
+        transform: scale(1);
+        opacity: 1;
+      }
+      
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+      }
+  
+      .modal-close:hover {
+        color: #000;
+      }
+  
+      body.modal-open {
+        overflow: hidden;
+      }
+  
+      .modal-image-gallery {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .modal-thumb {
+        width: 100px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease;
+      }
+      
+      .modal-thumb:hover {
+        transform: scale(1.05);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      }
+  
+      .lightbox-overlay {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1100;
+      }
+      
+      .lightbox-overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      }
+      
+      .lightbox-close {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        font-size: 2.5rem;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        z-index: 1101;
+      }
+      
+      .modal-thumb,
+      .modal-video-thumb {
+        width: 100px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease;
+      }
+      
+      .modal-video-thumb:hover {
+        transform: scale(1.05);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      }
+  
+      @media (max-width: 600px) {
+        .modal-content {
+          padding: 1.2rem;
+        }
       }
     </style>
-    <h1>Typing Test</h1>
-    <p id="test-text">The quick brown fox jumps over the lazy dog.</p>
-    <textarea id="input" placeholder="Start typing here..." rows="5"></textarea>
-    <div id="results">
-      <p><strong>Time:</strong> <span id="time">0</span>s</p>
-      <p><strong>WPM:</strong> <span id="wpm">0</span></p>
-      <p><strong>Accuracy:</strong> <span id="accuracy">100</span>%</p>
+  </head>
+  <body>
+    <script src="/scripts/glow.js"></script>
+  
+    <div class="nav-wrapper">
+      <nav class="nav">
+        <a href="index.html"><img src="/assets/svg/home.svg" />Home</a>
+        <a href="about.html"><img src="/assets/svg/about.svg" />About</a>
+        <a href="projects.html"><img src="/assets/svg/projects.svg" />Projects</a>
+        <a href="contact.html"><img src="/assets/svg/contact.svg" />Contact</a>
+        <!--<a href="photos.html"><img src="/assets/svg/photos.svg" />Photos</a> -->
+        <a href="clips.html"><img src="/assets/svg/photos.svg" />Esports</a>
+      </nav>
     </div>
-    <button onclick="resetTest()">Restart</button>
-  `;
-  const databricksModalContent4 = `
-    <div>
-      <h2>Login to View Dashboard</h2>
-      <form id="loginForm">
-        <input type="password" id="pw" placeholder="Password" />
-        <button type="submit">Login</button>
-      </form>
-      <h1>Valorant Aimlabs Stat Uploader – Project Overview</h1>
-
-      <h2>What It Does</h2>
-      <p>This app is a full-stack application that helps Valorant players <strong>track and upload their Aimlabs performance stats</strong> for long-term improvement analysis. It provides a structured way to collect, store, and visualize training data across sessions.</p>
   
-      <h2>Core Functionality</h2>
+    <main class="main-content">
+      <h1 style="color: white;">My Projects</h1>
   
-      <h3>Upload Aimlabs Stats (Python Script)</h3>
-      <ul>
-          <li>A command-line Python script (<code>aimlabs_uploader.py</code>) allows users to upload performance metrics from Aimlabs (like score, accuracy, kills, time, etc.) to a backend service.</li>
-          <li>The script sends a POST request to a FastAPI server with stats in JSON format.</li>
-      </ul>
+      <div class="grid">
+        <div class="project" onclick="openModal('Databricks File Management and Processing Dashboard', databricksModalContent)">
+          <h2>Databricks Dashboard</h2>
+          <img src="/assets/img/databricks.png" alt="Databricks Icon" class="project-icon" />
+        </div>
   
-      <h3>FastAPI Backend</h3>
-      <ul>
-          <li>Built with <a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a>, this backend receives and processes Aimlabs data from users.</li>
-          <li>It uses <strong>SQLAlchemy</strong> to interact with a Postgres database, storing each training stat entry with a timestamp.</li>
-          <li>A <code>/submit</code> endpoint is exposed for uploading new stats, and a <code>/stats</code> endpoint will allow querying them later.</li>
-      </ul>
+        <div class="project" onclick="openModal('Devotional App', databricksModalContent2)">
+          <h2>Devotional App</h2>
+          <img src="/assets/img/workin.png" alt="Work in Progress" class="project-icon" />
+        </div>
   
-      <h3>Persistent Storage with PostgreSQL</h3>
-      <ul>
-          <li>User performance stats are saved into a cloud-hosted PostgreSQL database (e.g., on <a href="https://render.com" target="_blank">Render</a>).</li>
-          <li>The database enables historical tracking, so players can measure growth over time.</li>
-      </ul>
+        <div class="project" onclick="openModal('Typing Test', databricksModalContent3)">
+          <h2>Typing Test</h2>
+          <img src="/assets/img/typing.png" alt="Typing Icon" class="project-icon" />
+        </div>
   
-      <h3>Future Frontend (Optional)</h3>
-      <ul>
-          <li>The backend is designed to support a frontend dashboard.</li>
-          <li>This could display performance charts, session breakdowns, map stats, and trends using tools like React, Dash, or plain HTML/CSS.</li>
-      </ul>
-      <h2>Technologies Used</h2>
-      <table>
-          <thead>
-              <tr>
-                  <th>Stack</th>
-                  <th>Tool / Library</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td><strong>Backend</strong></td>
-                  <td>FastAPI, Uvicorn</td>
-              </tr>
-              <tr>
-                  <td><strong>Database</strong></td>
-                  <td>PostgreSQL (via Render)</td>
-              </tr>
-              <tr>
-                  <td><strong>ORM</strong></td>
-                  <td>SQLAlchemy</td>
-              </tr>
-              <tr>
-                  <td><strong>Client</strong></td>
-                  <td>Python requests (CLI uploader)</td>
-              </tr>
-              <tr>
-                  <td><strong>Deployment</strong></td>
-                  <td>Local & Render (planned)</td>
-              </tr>
-          </tbody>
-      </table>
+        <div class="project" onclick="openModal('Aimlabs Reporting Tool', databricksModalContent4)">
+          <h2>Aimlabs Reporting Tool</h2>
+          <img src="/assets/img/aimlabs.png" alt="Aimlabs Icon" class="project-icon" />
+        </div>
+  
+        <div class="project" onclick="openModal('Esports Lab Automation', databricksModalContent5)">
+          <h2>Esports Lab Automation</h2>
+          <img src="/assets/img/lab.png" alt="Lab Icon" class="project-icon" />
+        </div>
+  
+        <div class="project" onclick="openModal('Small Projects', databricksModalContent6)">
+          <h2>Small Python Projects</h2>
+          <img src="/assets/img/python.png" alt="Python Icon" class="project-icon" />
+        </div>
+  
+      </div>
+    </main>
+  
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div id="modalContentArea"></div>
+      </div>
     </div>
-  `;
-  const databricksModalContent5 = `
-    <div>
-      <h1>Game Update Automation Using LanCache</h1>
-
-      <h2>Overview</h2>
-      <p>
-        To streamline bandwidth usage and accelerate game updates across multiple platforms (Steam, Epic Games, and Riot Games), I deployed a custom <strong>LanCache stack</strong> on a dedicated Ubuntu machine.
-        This setup acts as a <strong>local transparent caching proxy</strong>, reducing internet load and ensuring near-instant updates for multiple machines on my network.
-      </p>
+  
+    <script>
+      function openModal(title, htmlContent) {
+      const modal = document.getElementById('projectModal');
+      const content = document.getElementById('modalContentArea');
     
-      <h2>Technologies Used</h2>
+      content.innerHTML = `<h2>${title}</h2>${htmlContent}`;
+      modal.classList.add('active');
+    
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const pw = document.getElementById('pw').value;
+          if (pw === 'dashboard123') {
+            localStorage.setItem('authToken', 'FMu4-X7bHQ-9lW3acpcGZPgABx8_qjeR8fj5EtKnNjY');
+            window.location.href = 'dashboard.html';
+          } else {
+            alert('Wrong password');
+          }
+        });
+      }
+    }
+    
+      function closeModal() {
+        document.getElementById('projectModal').classList.remove('active');
+      }
+    
+      document.getElementById('projectModal').addEventListener('click', function (e) {
+        if (e.target === this) closeModal();
+      });
+      document.addEventListener('click', function(event) {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const img = document.getElementById('lightboxImage');
+        const vid = document.getElementById('lightboxVideo');
+      
+        if (event.target.classList.contains('modal-thumb')) {
+          img.src = event.target.getAttribute('src');
+          img.style.display = 'block';
+          vid.style.display = 'none';
+          lightboxOverlay.style.display = 'flex';
+        } else if (event.target.classList.contains('modal-video-thumb')) {
+          vid.src = event.target.getAttribute('src');
+          vid.style.display = 'block';
+          img.style.display = 'none';
+          lightboxOverlay.style.display = 'flex';
+        }
+      });
+      
+      function closeLightbox() {
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        document.getElementById('lightboxImage').style.display = 'none';
+        document.getElementById('lightboxVideo').pause(); // Stop video playback
+        document.getElementById('lightboxVideo').src = '';
+        document.getElementById('lightboxVideo').style.display = 'none';
+        lightboxOverlay.style.display = 'none';
+      }
+  
+      document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+      });
+  
+    </script>
+    <script>
+    const databricksModalContent = `
+      <h4>Overview</h4>
+      <p>
+        This application is a fully interactive <strong>Dash web dashboard</strong> designed to streamline the process of
+        <strong>uploading, processing, monitoring, and managing data files</strong> within a
+        <strong>Databricks Lakehouse environment</strong>.
+      </p>
+  
+      <h4>Key Objectives</h4>
       <ul>
-        <li>Ubuntu Server 20.04</li>
-        <li>Docker + Docker Compose</li>
-        <li>LanCache (Monolithic, DNS, and SNI Proxy)</li>
-        <li>Static IP & Router DNS Overrides</li>
-        <li>Target Platforms:
+        <li>Simplify file ingestion into Databricks volumes via a secure UI</li>
+        <li>Allow non-technical users to upload files, trigger processing pipelines, and monitor logs</li>
+        <li>Automate validation, logging, and pipeline execution</li>
+        <li>Provide an intuitive interface for deleting data artifacts safely</li>
+        <li>Display real-time pipeline statuses with playful, brand-aligned UI elements</li>
+      </ul>
+  
+      <h4>Features</h4>
+      <h5>1. Upload & Trigger Pipeline</h5>
+      <ul>
+        <li>Select from multiple <strong>document types</strong>, each mapped to a configured Databricks volume path</li>
+        <li>Drag-and-drop or click to upload files via a friendly UI</li>
+        <li>Files are organized by timestamp in folder structures like <code>/volume/2025/07/15/my_file.json</code></li>
+        <li>Users can trigger a <strong>DLT pipeline</strong> to process the uploaded file</li>
+        <li>Includes confirmation modals to prevent accidental execution</li>
+      </ul>
+  
+      <h5>2. Real-Time Pipeline Monitoring</h5>
+      <ul>
+        <li>Fetches and displays the <strong>Databricks pipeline state</strong> using the SDK</li>
+        <li>Displays up to 5 recent update logs with:
           <ul>
-            <li>Steam (e.g. Rocket League)</li>
-            <li>Epic Games Launcher</li>
-            <li>Riot Client (Valorant, League of Legends)</li>
+            <li>Update ID</li>
+            <li>State (e.g., RUNNING, FAILED)</li>
+            <li>Cause of update</li>
+            <li>Creation timestamps</li>
           </ul>
         </li>
+        <li>Includes a <strong>custom animated truck graphic</strong> that activates during pipeline execution</li>
+        <li>Uses background polling to refresh status in real-time</li>
       </ul>
-    
-      <h2>How It Works</h2>
-      <ol>
-        <li>LanCache intercepts DNS traffic for common game CDN domains and points them to the local cache server.</li>
-        <li>Game launchers download updates as usual, but the responses are cached locally on the first download.</li>
-        <li>Subsequent machines pull the data directly from the cache, reducing download times drastically.</li>
-      </ol>
-    
-      <h2>System Architecture</h2>
-      <pre>
-    [ Game Client ]
-         |
-         | (DNS query: steamcontent.com)
-         ↓
-    [ LanCache DNS Container ] ----> Upstream DNS (Cloudflare)
-         |
-         ↓
-    [ LanCache Monolithic (HTTP Proxy)]
-         |
-         ↓
-    [ Local Storage Cache ]
-      </pre>
-    
-      <h2>Benefits</h2>
+  
+      <h5>3. Record Deletion Interface</h5>
       <ul>
-        <li>80–90% bandwidth savings on repeated game installs/updates</li>
-        <li>Reduced update times for the lab overall</li>
-        <li>No config changes needed on client machines</li>
+        <li>Allows users to select a document type and delete files from Databricks Volumes</li>
+        <li>Includes confirmation modals to ensure safe deletion</li>
+        <li>Validates against known document types and paths</li>
       </ul>
-    
-      <h2>Deployment Timeline & Current Status</h2>
-      <p>
-        I’ve been actively developing and refining this LanCache system during the summer of 2025. My goal is to have it fully deployed and integrated into our <strong>collegiate esports infrastructure</strong> by the start of the <strong>Fall 2025 semester</strong>.
-      </p>
-      <p>
-        This deployment will ensure that players across our team can:
+  
+      <h5>4. Interactive Help / Documentation</h5>
+      <ul>
+        <li>Dedicated “How to Use Me” tab built into the app</li>
+        <li>Step-by-step instructions for upload, logs, and deletion workflows</li>
+        <li>“I Need Help” button available in the delete tab for direct access</li>
+      </ul>
+  
+      <h4>Technical Highlights</h4>
+      <ul>
+        <li><strong>Dash + Dash Bootstrap Components (DBC)</strong> for layout, styling, and responsive design</li>
+        <li><strong>Stateful app logic</strong> handled via <code>@callback</code> and <code>dcc.Store</code> components</li>
+        <li><strong>Databricks SDK</strong> manages secure file I/O, pipeline control, and metadata inspection</li>
+        <li><strong>Structured volume paths</strong> based on UTC timestamps for organized cloud storage</li>
+        <li><strong>Config-driven setup</strong> powered by <code>app.yaml</code></li>
+      </ul>
+  
+      <h4>Role & Responsibilities</h4>
+      <ul>
+        <li>Designed and implemented the full-stack Dash application architecture</li>
+        <li>Developed custom data classes and caching systems</li>
+        <li>Integrated and tested file uploads and pipeline triggers using the Databricks SDK</li>
+        <li>Managed UI/UX flows, modals, feedback alerts, and status transitions</li>
+        <li>Ensured modular design with reusable components</li>
+      </ul>
+  
+      <h4>Outcomes</h4>
+      <ul>
+        <li>Empowered users to manage workflows without needing Databricks access</li>
+        <li>Eliminated the need for manual notebook execution or CLI commands</li>
+        <li>Increased observability and traceability with live dashboards</li>
+        <li>Delivered a production-ready, highly maintainable solution</li>
+      </ul>
+  
+      <h4>Technologies Used</h4>
+      <ul>
+        <li>Python 3</li>
+        <li>Dash (by Plotly)</li>
+        <li>Dash Bootstrap Components</li>
+        <li>Databricks SDK</li>
+        <li>Delta Live Tables (DLT)</li>
+        <li>Databricks Unity Catalog Volumes</li>
+        <li>YAML Configuration</li>
+        <li>dcc.Store, dcc.Upload, dcc.Interval</li>
+      </ul>
+      <h4>Screenshots & Visuals</h4>
+      <div class="modal-image-gallery">
+        <img src="/assets/img/databricks.png" alt="Screenshot 1" class="modal-thumb" />
+        <video src="databricks.mp4" controls playsinline preload="metadata" class="modal-video-thumb"></video>
+      </div>
+  
+    `;
+    const databricksModalContent2 = `
+      <section id="portfolio-journal-app">
+        <h2>Spiritual Reflection Journal App</h2>
+        <p><strong>Tech Stack:</strong> SwiftUI · Core Data · AppStorage · MVVM Architecture</p>
+      
+        <p>
+          I’m developing a multi-tab iOS app designed to help users reflect on their spiritual and emotional well-being through daily journaling. 
+          The app includes three main sections:
+        </p>
+      
+        <h3>Current Features:</h3>
         <ul>
-          <li>Quickly install or update titles before matches and scrims(as we have had issues in the past)</li>
-          <li>Avoid redundant bandwidth usage across multiple devices</li>
-          <li>Maintain consistency across game versions during practice and events</li>
+          <li>
+            <strong>Gratitude Journal</strong><br>
+            A section for users to log daily gratitude entries. Each entry is timestamped, saved in Core Data, and grouped by date in a clean list UI. 
+            Swipe actions allow editing or deleting entries inline.
+          </li>
+          <li>
+            <strong>Reflection Journal</strong><br>
+            Prompts users to reflect on their day with placeholder guidance. Supports color-themed customization based on user preference via <code>@AppStorage</code>. 
+            Reflection entries are persisted in Core Data and grouped by date.
+          </li>
+          <li>
+            <strong>Prayer Journal</strong><br>
+            Users can categorize entries into “Request,” “Reflection,” or “Answered Prayer” using a segmented control. 
+            Includes Core Data support with custom grouping and inline entry editing or deletion.
+          </li>
+          <li>
+            <strong>Dynamic Themes</strong><br>
+            Users can choose a preferred background (white, dark, beige, light gray), which applies consistently across all views using <code>@AppStorage</code>.
+          </li>
+          <li>
+            <strong>Data Persistence</strong><br>
+            All journal data is stored locally using Core Data, allowing full offline access and long-term storage of journal history.
+          </li>
         </ul>
-        This setup is currently being tested with multiple clients on a local network and will be scaled to our full team environment once final testing is complete.
-      </p>
-    </div>
-  `;
-  const databricksModalContent6 = `
-    <div>
-      <h2>Small Python Projects</h2>
-      <p>As part of my continuous learning and experimentation with Python, I’ve developed several small-scale projects that demonstrate my understanding of core programming concepts and my ability to turn ideas into functional tools.</p>
-    
-      <h3>QR Code Generator</h3>
-      <p>A simple Python tool using <code>qrcode</code> and <code>Pillow</code> to generate QR codes from user input.</p>
-      <ul>
-        <li>Text/URL input</li>
-        <li>PNG image output</li>
-      </ul>
-      <p>Enter a URL and generate a downloadable QR code:</p>
-
-      <form action="https://qrcode-ambo.onrender.com/generate_qr" method="POST" target="_blank">
-        <label for="link">Link to Encode:</label><br>
-        <input type="text" id="link" name="link" required><br><br>
-    
-        <label for="name">File Name:</label><br>
-        <input type="text" id="name" name="name" placeholder="e.g., my_qr_code" required><br><br>
-    
-        <button type="submit">Generate QR Code</button>
-      </form>
-    
-      <h3>Word Guessing Game (Hangman-inspired)</h3>
-      <p>A terminal-based game where players guess a hidden word with limited tries.</p>
-      <ul>
-        <li>Random word selection</li>
-        <li>Input validation and guess tracking</li>
-        <li>End-game feedback</li>
-      </ul>
-    
-      <h3>Basic Calculator</h3>
-      <p>A command-line calculator supporting fundamental operations.</p>
-      <ul>
-        <li>Addition, subtraction, multiplication, division</li>
-        <li>Error handling for invalid input</li>
-      </ul>
-    
-      <h3>Purpose</h3>
-      <p>These projects allowed me to sharpen my coding skills while building practical tools and games using Python.</p>
-    </div>
-  `;
-</script>
-<script>
-  const typingText = "The quick brown fox jumps over the lazy dog.";
-  let startTime, timerInterval;
-
-  document.addEventListener("input", function (e) {
-    const input = document.getElementById("input");
-    if (!input || e.target !== input) return;
-
-    if (!startTime) {
-      startTime = new Date();
-      timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    const typed = input.value;
-    const correctChars = typed.split('').filter((c, i) => c === typingText[i]).length;
-    
-    const elapsedSeconds = (new Date() - startTime) / 1000;
-    const elapsedMinutes = elapsedSeconds / 60;
-    
-    const grossWPM = Math.round((typed.length / 5) / elapsedMinutes);
-    const accuracy = Math.round((correctChars / typed.length) * 100) || 100;
-    
-    document.getElementById("wpm").textContent = isFinite(grossWPM) ? grossWPM : 0;
-    document.getElementById("accuracy").textContent = accuracy;
-
-
-   if (typed === typingText) {
-      clearInterval(timerInterval);
-      document.getElementById("input").disabled = true;
-      const doneMsg = document.createElement("p");
-      doneMsg.textContent = "✅ Test Complete!";
-      doneMsg.style.marginTop = "1rem";
-      doneMsg.style.fontWeight = "bold";
-      document.getElementById("results").appendChild(doneMsg);
-    }
-
-  });
-
-  function updateTimer() {
-    const time = Math.floor((new Date() - startTime) / 1000);
-    document.getElementById("time").textContent = time;
-  }
-
-  function resetTest() {
-    const input = document.getElementById("input");
-    if (!input) return;
+      
+        <h3>Planned Features:</h3>
+        <ul>
+          <li><strong>Search and Filtering</strong> – Search/filter entries by keyword, date, or category.</li>
+          <li><strong>iCloud Syncing</strong> – Sync entries across devices using CloudKit.</li>
+          <li><strong>Daily Notifications</strong> – Remind users to journal each day and build consistency.</li>
+          <li><strong>Verse of the Day Integration</strong> – Display a new Bible verse daily as a spiritual prompt.</li>
+          <li><strong>Export Entries</strong> – Allow users to export journal entries as PDF or text.</li>
+        </ul>
+      
+        <p>
+          This project showcases my ability to work with Core Data, SwiftUI components, app architecture, and data persistence — 
+          while also designing for a real-world use case: emotional and spiritual growth through intentional journaling.
+        </p>
+      </section>
+    `;
+    const databricksModalContent3 = `
+      <style>
+        #test-text {
+          margin-bottom: 1rem;
+          font-weight: bold;
+        }
+        #input {
+          width: 100%;
+          font-size: 16px;
+          padding: 10px;
+          margin-bottom: 1rem;
+          font-family: monospace;
+        }
+        #results p {
+          margin: 0.2rem 0;
+        }
+        #results {
+          margin-top: 1rem;
+        }
+        button {
+          margin-top: 1rem;
+          padding: 8px 16px;
+          border: none;
+          background-color: #333;
+          color: white;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: #555;
+        }
+      </style>
+      <h1>Typing Test</h1>
+      <p id="test-text">The quick brown fox jumps over the lazy dog.</p>
+      <textarea id="input" placeholder="Start typing here..." rows="5"></textarea>
+      <div id="results">
+        <p><strong>Time:</strong> <span id="time">0</span>s</p>
+        <p><strong>WPM:</strong> <span id="wpm">0</span></p>
+        <p><strong>Accuracy:</strong> <span id="accuracy">100</span>%</p>
+      </div>
+      <button onclick="resetTest()">Restart</button>
+    `;
+    const databricksModalContent4 = `
+      <div>
+        <h2>Login to View Dashboard</h2>
+        <form id="loginForm">
+          <input type="password" id="pw" placeholder="Password" />
+          <button type="submit">Login</button>
+        </form>
+        <h1>Valorant Aimlabs Stat Uploader – Project Overview</h1>
   
-    input.value = "";
-    input.disabled = false;
-    startTime = null;
-    clearInterval(timerInterval);
-    document.getElementById("time").textContent = 0;
-    document.getElementById("wpm").textContent = 0;
-    document.getElementById("accuracy").textContent = 100;
+        <h2>What It Does</h2>
+        <p>This app is a full-stack application that helps Valorant players <strong>track and upload their Aimlabs performance stats</strong> for long-term improvement analysis. It provides a structured way to collect, store, and visualize training data across sessions.</p>
+    
+        <h2>Core Functionality</h2>
+    
+        <h3>Upload Aimlabs Stats (Python Script)</h3>
+        <ul>
+            <li>A command-line Python script (<code>aimlabs_uploader.py</code>) allows users to upload performance metrics from Aimlabs (like score, accuracy, kills, time, etc.) to a backend service.</li>
+            <li>The script sends a POST request to a FastAPI server with stats in JSON format.</li>
+        </ul>
+    
+        <h3>FastAPI Backend</h3>
+        <ul>
+            <li>Built with <a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a>, this backend receives and processes Aimlabs data from users.</li>
+            <li>It uses <strong>SQLAlchemy</strong> to interact with a Postgres database, storing each training stat entry with a timestamp.</li>
+            <li>A <code>/submit</code> endpoint is exposed for uploading new stats, and a <code>/stats</code> endpoint will allow querying them later.</li>
+        </ul>
+    
+        <h3>Persistent Storage with PostgreSQL</h3>
+        <ul>
+            <li>User performance stats are saved into a cloud-hosted PostgreSQL database (e.g., on <a href="https://render.com" target="_blank">Render</a>).</li>
+            <li>The database enables historical tracking, so players can measure growth over time.</li>
+        </ul>
+    
+        <h3>Future Frontend (Optional)</h3>
+        <ul>
+            <li>The backend is designed to support a frontend dashboard.</li>
+            <li>This could display performance charts, session breakdowns, map stats, and trends using tools like React, Dash, or plain HTML/CSS.</li>
+        </ul>
+        <h2>Technologies Used</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stack</th>
+                    <th>Tool / Library</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Backend</strong></td>
+                    <td>FastAPI, Uvicorn</td>
+                </tr>
+                <tr>
+                    <td><strong>Database</strong></td>
+                    <td>PostgreSQL (via Render)</td>
+                </tr>
+                <tr>
+                    <td><strong>ORM</strong></td>
+                    <td>SQLAlchemy</td>
+                </tr>
+                <tr>
+                    <td><strong>Client</strong></td>
+                    <td>Python requests (CLI uploader)</td>
+                </tr>
+                <tr>
+                    <td><strong>Deployment</strong></td>
+                    <td>Local & Render (planned)</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    `;
+    const databricksModalContent5 = `
+      <div>
+        <h1>Game Update Automation Using LanCache</h1>
   
-    // Remove any “Test Complete” messages
-    const resultsDiv = document.getElementById("results");
-    [...resultsDiv.querySelectorAll("p")].forEach(p => {
-      if (p.textContent.includes("Test Complete")) p.remove();
+        <h2>Overview</h2>
+        <p>
+          To streamline bandwidth usage and accelerate game updates across multiple platforms (Steam, Epic Games, and Riot Games), I deployed a custom <strong>LanCache stack</strong> on a dedicated Ubuntu machine.
+          This setup acts as a <strong>local transparent caching proxy</strong>, reducing internet load and ensuring near-instant updates for multiple machines on my network.
+        </p>
+      
+        <h2>Technologies Used</h2>
+        <ul>
+          <li>Ubuntu Server 20.04</li>
+          <li>Docker + Docker Compose</li>
+          <li>LanCache (Monolithic, DNS, and SNI Proxy)</li>
+          <li>Static IP & Router DNS Overrides</li>
+          <li>Target Platforms:
+            <ul>
+              <li>Steam (e.g. Rocket League)</li>
+              <li>Epic Games Launcher</li>
+              <li>Riot Client (Valorant, League of Legends)</li>
+            </ul>
+          </li>
+        </ul>
+      
+        <h2>How It Works</h2>
+        <ol>
+          <li>LanCache intercepts DNS traffic for common game CDN domains and points them to the local cache server.</li>
+          <li>Game launchers download updates as usual, but the responses are cached locally on the first download.</li>
+          <li>Subsequent machines pull the data directly from the cache, reducing download times drastically.</li>
+        </ol>
+      
+        <h2>System Architecture</h2>
+        <pre>
+          [ Game Client ]
+               |
+               | (DNS query: steamcontent.com)
+               ↓
+          [ LanCache DNS Container ] ----> Upstream DNS (Cloudflare)
+               |
+               ↓
+          [ LanCache Monolithic (HTTP Proxy)]
+               |
+               ↓
+          [ Local Storage Cache ]
+        </pre>
+      
+        <h2>Benefits</h2>
+        <ul>
+          <li>80–90% bandwidth savings on repeated game installs/updates</li>
+          <li>Reduced update times for the lab overall</li>
+          <li>No config changes needed on client machines</li>
+        </ul>
+      
+        <h2>Deployment Timeline & Current Status</h2>
+        <p>
+          I’ve been actively developing and refining this LanCache system during the summer of 2025. My goal is to have it fully deployed and integrated into our <strong>collegiate esports infrastructure</strong> by the start of the <strong>Fall 2025 semester</strong>.
+        </p>
+        <p>
+          This deployment will ensure that players across our team can:
+          <ul>
+            <li>Quickly install or update titles before matches and scrims(as we have had issues in the past)</li>
+            <li>Avoid redundant bandwidth usage across multiple devices</li>
+            <li>Maintain consistency across game versions during practice and events</li>
+          </ul>
+          This setup is currently being tested with multiple clients on a local network and will be scaled to our full team environment once final testing is complete.
+        </p>
+      </div>
+    `;
+    const databricksModalContent6 = `
+      <div>
+        <h2>Small Python Projects</h2>
+        <p>As part of my continuous learning and experimentation with Python, I’ve developed several small-scale projects that demonstrate my understanding of core programming concepts and my ability to turn ideas into functional tools.</p>
+      
+        <h3>QR Code Generator</h3>
+        <p>A simple Python tool using <code>qrcode</code> and <code>Pillow</code> to generate QR codes from user input.</p>
+        <ul>
+          <li>Text/URL input</li>
+          <li>PNG image output</li>
+        </ul>
+        <p>Enter a URL and generate a downloadable QR code:</p>
+  
+        <form action="https://qrcode-ambo.onrender.com/generate_qr" method="POST" target="_blank">
+          <label for="link">Link to Encode:</label><br>
+          <input type="text" id="link" name="link" required><br><br>
+      
+          <label for="name">File Name:</label><br>
+          <input type="text" id="name" name="name" placeholder="e.g., my_qr_code" required><br><br>
+      
+          <button type="submit">Generate QR Code</button>
+        </form>
+      
+        <h3>Word Guessing Game (Hangman-inspired)</h3>
+        <p>A terminal-based game where players guess a hidden word with limited tries.</p>
+        <ul>
+          <li>Random word selection</li>
+          <li>Input validation and guess tracking</li>
+          <li>End-game feedback</li>
+        </ul>
+      
+        <h3>Basic Calculator</h3>
+        <p>A command-line calculator supporting fundamental operations.</p>
+        <ul>
+          <li>Addition, subtraction, multiplication, division</li>
+          <li>Error handling for invalid input</li>
+        </ul>
+      
+        <h3>Purpose</h3>
+        <p>These projects allowed me to sharpen my coding skills while building practical tools and games using Python.</p>
+      </div>
+    `;
+  </script>
+  <script>
+    const typingText = "The quick brown fox jumps over the lazy dog.";
+    let startTime, timerInterval;
+  
+    document.addEventListener("input", function (e) {
+      const input = document.getElementById("input");
+      if (!input || e.target !== input) return;
+  
+      if (!startTime) {
+        startTime = new Date();
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+  
+      const typed = input.value;
+      const correctChars = typed.split('').filter((c, i) => c === typingText[i]).length;
+      
+      const elapsedSeconds = (new Date() - startTime) / 1000;
+      const elapsedMinutes = elapsedSeconds / 60;
+      
+      const grossWPM = Math.round((typed.length / 5) / elapsedMinutes);
+      const accuracy = Math.round((correctChars / typed.length) * 100) || 100;
+      
+      document.getElementById("wpm").textContent = isFinite(grossWPM) ? grossWPM : 0;
+      document.getElementById("accuracy").textContent = accuracy;
+  
+  
+     if (typed === typingText) {
+        clearInterval(timerInterval);
+        document.getElementById("input").disabled = true;
+        const doneMsg = document.createElement("p");
+        doneMsg.textContent = "✅ Test Complete!";
+        doneMsg.style.marginTop = "1rem";
+        doneMsg.style.fontWeight = "bold";
+        document.getElementById("results").appendChild(doneMsg);
+      }
+  
     });
-  }
-
-</script>
-
-</script>
-<div id="lightboxOverlay" class="lightbox-overlay" style="display:none;">
-  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-  <img id="lightboxImage" style="display: none;" />
-  <video id="lightboxVideo" style="display: none;" controls></video>
-
-</div>
-</body>
+  
+    function updateTimer() {
+      const time = Math.floor((new Date() - startTime) / 1000);
+      document.getElementById("time").textContent = time;
+    }
+  
+    function resetTest() {
+      const input = document.getElementById("input");
+      if (!input) return;
+    
+      input.value = "";
+      input.disabled = false;
+      startTime = null;
+      clearInterval(timerInterval);
+      document.getElementById("time").textContent = 0;
+      document.getElementById("wpm").textContent = 0;
+      document.getElementById("accuracy").textContent = 100;
+    
+      // Remove any “Test Complete” messages
+      const resultsDiv = document.getElementById("results");
+      [...resultsDiv.querySelectorAll("p")].forEach(p => {
+        if (p.textContent.includes("Test Complete")) p.remove();
+      });
+    }
+  
+  </script>
+  
+  </script>
+  <div id="lightboxOverlay" class="lightbox-overlay" style="display:none;">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImage" style="display: none;" />
+    <video id="lightboxVideo" style="display: none;" controls></video>
+  
+  </div>
+  </body>
 </html>
+
 
 
 
