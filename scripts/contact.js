@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then(responseData => {
             modal.style.display = 'block';
 
-            // Reset the form
             form.reset();
 
             setTimeout(() => {
@@ -37,5 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
 
 
