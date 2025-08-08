@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 body, html {
   margin: 0;
   padding: 0;
@@ -8,6 +9,7 @@ body, html {
   scrollbar-gutter: stable;
   max-width: 100vw;
 }
+
 body {
   margin: 0;
   font-family: 'JetBrains Mono', monospace;
@@ -15,15 +17,17 @@ body {
   color: white;
   scroll-behavior: smooth;
 }
+
 .nav-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
+
 #loader {
   position: fixed;
   inset: 0;
-  background-color: #0e0e0e; /* Or your background color */
+  background-color: #0e0e0e; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,20 +35,17 @@ body {
   transition: opacity 0.4s ease;
 }
 
-/* Container for loader content */
 .loader-content {
   text-align: center;
   animation: fadeIn 1s ease forwards;
 }
 
-/* Optional logo styling */
 .loader-logo {
   width: 80px;
   height: 80px;
   animation: pulse 3s infinite;
 }
 
-/* Optional loading text */
 .loader-text {
   color: #00f2ff;
   font-family: 'JetBrains Mono', monospace;
@@ -54,7 +55,6 @@ body {
   animation: blink 2.5s steps(1) infinite; 
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
@@ -83,11 +83,13 @@ body {
   opacity: 60%;
   transform: translate(-50%, -50%);
 }
+
 @keyframes glowing {
   0% {background-position: 0 0;}
   50% {background-position: 400% 0;}
   100% {background-position: 0 0;}
 }
+
 nav {
     display: flex;
     justify-content: center;
@@ -101,7 +103,8 @@ nav {
     max-width: 700px;
     margin: 20px auto 0 auto;
     box-sizing: border-box;
-  }
+}
+
 nav a {
     display: inline-block;
     padding: 4px;
@@ -111,19 +114,21 @@ nav a {
     color: white;
     border-radius: 10px;
 }
+
 nav a img {
     width: 18px;
     height: 18px;
     margin-right: 6px;
     vertical-align: middle;
     filter: invert(100%) sepia(90%) hue-rotate(120deg);
-  }
+}
+
 nav a:hover {
     background-color: gray;
     border-radius: 10px;
-    /* no padding added here */
-    transform: scale(1.05); /* optional for a slight effect */
+    transform: scale(1.05); 
 }
+
 .photo-gallery {
   display: grid;
   gap: 1.5rem;
@@ -157,6 +162,7 @@ nav a:hover {
   font-size: 0.85rem;
   color: #ccc;
 }
+
 .main-nav {
   display: flex;
   justify-content: center;
@@ -168,32 +174,37 @@ nav a:hover {
   top: 0;
   z-index: 100;
 }
+
 .hero {
   text-align: center;
   padding: 40px 20px;
   text-decoration: none;
 }
+
 .hero h1 {
   font-size: 2.75rem;
   color: cyan;
   margin-bottom: 0.5rem;
 }
+
 .hero h3 {
   font-weight: normal;
   color: #ccc;
   margin-top: 0;
   margin-bottom: 1rem;
 }
+
 .hero a {
   text-decoration: none;
   color: cyan;
 }
+
 .hero a:hover {
   background-color: gray;
   border-radius: 10px;
-  /* no padding added here */
-  transform: scale(1.05); /* optional for a slight effect */
+  transform: scale(1.05);
 }
+
 .main-nav a {
   color: cyan;
   text-decoration: none;
@@ -295,6 +306,7 @@ nav a:hover {
   font-size: 0.85rem;
   opacity: 0.8;
 }
+
 .link-row {
   display: flex;
   justify-content: center;
@@ -318,19 +330,23 @@ nav a:hover {
   background: cyan;
   color: black;
 }
+
 .grid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
+
 .photo-card {
   text-align: center;
 }
+
 .photo-card img {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.05);
 }
+
 .card {
   background: #111;
   padding: 1rem;
@@ -338,6 +354,7 @@ nav a:hover {
   box-shadow: 0 0 8px rgba(0,255,255,0.05);
   transition: transform 0.2s ease;
 }
+
 .card img {
   height: auto;
   aspect-ratio: 4 / 3;
@@ -345,6 +362,7 @@ nav a:hover {
   border-radius: 10px;
   display: block;
 }
+
 .card:hover {
   transform: translateY(-4px);
 }
@@ -370,6 +388,7 @@ nav a:hover {
 .btn:hover {
   background-color: #00ffff;
 }
+
 #glow {
   position: absolute;
   width: 500px;
@@ -380,6 +399,7 @@ nav a:hover {
   z-index: -1;
   pointer-events: none;
 }
+
 .section {
   padding: 2rem;
   max-width: 1200px;
@@ -415,7 +435,7 @@ nav a:hover {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  object-fit: contain; /* ← updated from cover */
+  object-fit: contain; 
 }
 
 .photo-gallery figcaption {
@@ -424,7 +444,6 @@ nav a:hover {
   color: #ccc;
 }
 
-/* Lightbox styling */
 #lightbox-overlay {
   display: none;
   flex-direction: column;
@@ -493,9 +512,10 @@ nav a:hover {
 #lightbox-close:hover {
   background: rgba(0, 255, 255, 0.4);
 }
+
 .fade-in {
-  display: flex;                /* Add this */
-  flex-wrap: wrap;             /* Allow wrapping on smaller screens */
+  display: flex;             
+  flex-wrap: wrap;            
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
@@ -504,13 +524,14 @@ nav a:hover {
   transform: translateY(20px);
   animation: fadeInAnimation 1s ease-out forwards;
 }
+
 .fade-in2 {
   width: 100%; 
   opacity: 0;
-  transform: translateY(20px); /* Slight move-up effect */
+  transform: translateY(20px);
   animation: fadeInAnimation2 1s ease-out forwards;
 }
-/* Define the keyframes for fading in */
+
 @keyframes fadeInAnimation {
   from {
       opacity: 0;
@@ -521,6 +542,7 @@ nav a:hover {
       transform: translateY(0);
   }
 }
+
 @keyframes fadeInAnimation2 {
   from {
       opacity: 0;
@@ -531,6 +553,7 @@ nav a:hover {
       transform: translateY(0);
   }
 }
+
 @media (max-width: 768px) {
   .nav {
     flex-wrap: wrap;
@@ -539,7 +562,7 @@ nav a:hover {
   }
 
   .photo-grid {
-    grid-template-columns: 1fr; /* stack photos on mobile */
+    grid-template-columns: 1fr; 
   }
 
   .social-icons {
