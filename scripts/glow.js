@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function animateGlow() {
-        // Smoothly interpolate glow position
         glowX += (mouseX - glowX) * delayFactor;
         glowY += (mouseY - glowY) * delayFactor;
         glow.style.left = `${glowX}px`;
@@ -22,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animateGlow);
     }
 
-    animateGlow(); // Start animation loop
+    animateGlow();
 });
+
 
