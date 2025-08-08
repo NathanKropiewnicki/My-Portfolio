@@ -227,6 +227,11 @@
           <h2>Small Python Projects</h2>
           <img src="/assets/img/python.png" alt="Python Icon" class="project-icon" />
         </div>
+
+        <div class="project" onclick="openModal('Email Notification Workflow', databricksModalContent7)">
+          <h2>Email Notification Workflow</h2>
+          <img src="/assets/img/tines.png" alt="Tines Icon" class="project-icon" />
+        </div>
   
       </div>
     </main>
@@ -677,6 +682,33 @@
         <p>These projects allowed me to sharpen my coding skills while building practical tools and games using Python.</p>
       </div>
     `;
+    const databricksModalContent7 = `
+      <div>
+        <h2>Automated Patch Update Notification System for Esports Lab</h2>
+        <p>
+          In this project, I developed an automated system that monitors patch releases for Valorant, and League of Legends which sends email notifications whenever a new patch is published. The goal was to streamline the maintenance workflow in our esports lab by ensuring that I am immediately aware when game updates are available, allowing timely updates to the gaming setups.
+        </p>
+        <h3>Key Features and Workflow:</h3>
+        <ul>
+          <li><strong>RSS Feed Integration:</strong> The system fetches the latest patch notes and news articles from trusted sources by consuming their RSS feeds. This ensures real-time monitoring of new patch releases without manual checking.</li>
+          <li><strong>Content Parsing and Filtering:</strong> Incoming RSS data is parsed and filtered to isolate only relevant patch notes, ignoring unrelated news to reduce noise and unnecessary notifications.</li>
+          <li><strong>Duplicate Prevention:</strong> To avoid receiving duplicate alerts, the system maintains a record of previously notified patches and only triggers emails for genuinely new updates.</li>
+          <li><strong>Automated Email Alerts:</strong> Upon detecting a new patch note, the system automatically sends a well-formatted email notification containing the patch details and direct links to the official patch notes.</li>
+          <li><strong>Scalable and Customizable:</strong> While initially designed for Valorant, the workflow can be easily adapted to monitor patches for other games or software relevant to the esports lab environment.</li>
+        </ul>
+        <h3>Technologies and Tools Used:</h3>
+        <ul>
+          <li><strong>Tines Workflow Automation:</strong> Leveraged Tines to orchestrate HTTP requests, data parsing, filtering, storage, and email sending within a low-code environment.</li>
+          <li><strong>RSS/XML Parsing:</strong> Used XML parsing techniques to process RSS feed data and extract necessary information.</li>
+          <li><strong>Liquid Templating:</strong> Employed Liquid templates in Tines for flexible and efficient data filtering and transformation.</li>
+          <li><strong>Email Integration:</strong> Integrated with email services to automate sending notifications directly to my inbox.</li>
+        </ul>
+        <h3>Outcome and Benefits:</h3>
+        <p>
+          By automating patch notifications, this project eliminates the need for manual patch checks, reduces downtime, and ensures our esports lab machines are always up-to-date with the latest game versions. This system saves valuable time and effort, enabling a more efficient and responsive esports environment.
+        </p>
+      </div>
+    `;
   </script>
   <script>
     const typingText = "The quick brown fox jumps over the lazy dog.";
@@ -751,6 +783,7 @@
   </div>
   </body>
 </html>
+
 
 
 
