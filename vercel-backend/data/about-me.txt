@@ -1,1 +1,29 @@
+Nathan Kropiewnicki is a software developer specializing in web development, data engineering, and creative coding projects. He is passionate about building practical, visually appealing, and user-friendly applications.
+
+Skills:
+- Languages: JavaScript, Python, Java, C
+- Frameworks: React, Next.js, Dash
+- Tools: Git, Docker, Databricks, Vercel, Render
+- Cloud: Azure, Google Cloud Platform
+- Soft Skills: Problem-solving, communication, teamwork
+
+Experience:
+- Applications Support Associate at Ozinga (Summer 2025): Developed a new data table in Azure Data Lake, integrated with Databricks, and updated an existing Delta Live Table pipeline to include a new column from the new table.
+- Web Developer at ABC Agency (2023): Created interactive dashboards and marketing sites for clients.
+
+Education:
+- Bachelor’s in Computer Science, Bethel University
+- Relevant Courses: Data Structures, Machine Learning, Cloud Computing
+
+Projects:
+- Bible Verse Alarm Clock: A 3D-printed alarm clock that displays a new Bible verse each day.
+- Esports Stats Dashboard: A full HTML-based dashboard tracking Aimlabs performance with charts, maps, and trends.
+
+Awards:
+- 1st Team all conference WHAC Valorant esports Spring 2025
+- Dean’s List Spring 2025
+
+Fun Facts:
+- Enjoys fishing, gaming, and creative design projects.
+- Loves building small devices with Raspberry Pi and Arduino.
 
