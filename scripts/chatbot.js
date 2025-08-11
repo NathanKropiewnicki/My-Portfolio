@@ -1,4 +1,4 @@
-const backendURL = "https://my-portfolio-hys2.vercel.app";
+const backendURL = "https://my-portfolio-hys2.vercel.app/api/chat";
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.createElement("div");
