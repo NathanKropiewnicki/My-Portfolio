@@ -23,23 +23,51 @@ document.addEventListener("DOMContentLoaded", () => {
       chatWindow.style.display === "flex" ? "none" : "flex";
   });
 
-  const sendMessage = async () => {
-    const input = chatWindow.querySelector("input");
-    const text = input.value.trim();
-    if (!text) return;
-    appendMessage("You", text);
-    input.value = "";
+ async function sendMessage() {
+  const inputField = document.getElementById("chat-input");
+  const userMessage = inputField.value.trim();
+  if (!userMessage) return;
 
-    appendMessage("Bot", "Thinking...");
-    const res = await fetch(backendURL, {
+  appendMessage("You", userMessage);
+  inputField.value = "";
+
+  // Show thinking message
+  const thinkingMsgId = appendMessage("Bot", "Thinking...");
+
+  try {
+    const response = await fetch("https://<your-vercel-project-name>.vercel.app/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text })
+      body: JSON.stringify({ message: userMessage })
     });
-    const data = await res.json();
-    chatWindow.querySelectorAll("#chatbot-messages div").pop;
-    appendMessage("Bot", data.answer);
-  };
+
+    const data = await response.json();
+
+    // Replace "Thinking..." with actual reply
+    updateMessage(thinkingMsgId, "Bot", data.reply || "Sorry, I couldn't understand.");
+  } catch (error) {
+    updateMessage(thinkingMsgId, "Bot", "Error connecting to the server.");
+  }
+}
+
+// Helper to append message
+function appendMessage(sender, text) {
+  const chatBox = document.getElementById("chat-box");
+  const messageElem = document.createElement("div");
+  const id = Date.now();
+  messageElem.dataset.id = id;
+  messageElem.textContent = `${sender}: ${text}`;
+  chatBox.appendChild(messageElem);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  return id;
+}
+
+// Helper to update message
+function updateMessage(id, sender, text) {
+  const chatBox = document.getElementById("chat-box");
+  const msgElem = [...chatBox.children].find(m => m.dataset.id == id);
+  if (msgElem) msgElem.textContent = `${sender}: ${text}`;
+}
 
   chatWindow.querySelector("button").addEventListener("click", sendMessage);
   chatWindow.querySelector("input").addEventListener("keypress", e => {
@@ -47,10 +75,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function appendMessage(sender, text) {
-  const msgBox = document.getElementById("chatbot-messages");
-  const msg = document.createElement("div");
-  msg.textContent = `${sender}: ${text}`;
-  msgBox.appendChild(msg);
-  msgBox.scrollTop = msgBox.scrollHeight;
-}
