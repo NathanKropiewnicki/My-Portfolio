@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatWindow = document.createElement("div");
   chatWindow.id = "chatbot-window";
   chatWindow.innerHTML = `
-    <div id="chatbot-messages"></div>
+    <div id="chat-box"></div>
     <div id="chatbot-input">
-      <input type="text" placeholder="Ask me anything...">
+      <input id="chat-input" type="text" placeholder="Ask me anything...">
       <button>Send</button>
     </div>
   `;
@@ -23,51 +23,48 @@ document.addEventListener("DOMContentLoaded", () => {
       chatWindow.style.display === "flex" ? "none" : "flex";
   });
 
- async function sendMessage() {
-  const inputField = document.getElementById("chat-input");
-  const userMessage = inputField.value.trim();
-  if (!userMessage) return;
+  async function sendMessage() {
+    const inputField = document.getElementById("chat-input");
+    const userMessage = inputField.value.trim();
+    if (!userMessage) return;
 
-  appendMessage("You", userMessage);
-  inputField.value = "";
+    appendMessage("You", userMessage);
+    inputField.value = "";
 
-  // Show thinking message
-  const thinkingMsgId = appendMessage("Bot", "Thinking...");
+    // Show thinking message
+    const thinkingMsgId = appendMessage("Bot", "Thinking...");
 
-  try {
-    const response = await fetch("https://<your-vercel-project-name>.vercel.app/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: userMessage })
-    });
+    try {
+      const response = await fetch(backendURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    // Replace "Thinking..." with actual reply
-    updateMessage(thinkingMsgId, "Bot", data.reply || "Sorry, I couldn't understand.");
-  } catch (error) {
-    updateMessage(thinkingMsgId, "Bot", "Error connecting to the server.");
+      updateMessage(thinkingMsgId, "Bot", data.reply || "Sorry, I couldn't understand.");
+    } catch (error) {
+      updateMessage(thinkingMsgId, "Bot", "Error connecting to the server.");
+    }
   }
-}
 
-// Helper to append message
-function appendMessage(sender, text) {
-  const chatBox = document.getElementById("chat-box");
-  const messageElem = document.createElement("div");
-  const id = Date.now();
-  messageElem.dataset.id = id;
-  messageElem.textContent = `${sender}: ${text}`;
-  chatBox.appendChild(messageElem);
-  chatBox.scrollTop = chatBox.scrollHeight;
-  return id;
-}
+  function appendMessage(sender, text) {
+    const chatBox = document.getElementById("chat-box");
+    const messageElem = document.createElement("div");
+    const id = Date.now();
+    messageElem.dataset.id = id;
+    messageElem.textContent = `${sender}: ${text}`;
+    chatBox.appendChild(messageElem);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return id;
+  }
 
-// Helper to update message
-function updateMessage(id, sender, text) {
-  const chatBox = document.getElementById("chat-box");
-  const msgElem = [...chatBox.children].find(m => m.dataset.id == id);
-  if (msgElem) msgElem.textContent = `${sender}: ${text}`;
-}
+  function updateMessage(id, sender, text) {
+    const chatBox = document.getElementById("chat-box");
+    const msgElem = [...chatBox.children].find(m => m.dataset.id == id);
+    if (msgElem) msgElem.textContent = `${sender}: ${text}`;
+  }
 
   chatWindow.querySelector("button").addEventListener("click", sendMessage);
   chatWindow.querySelector("input").addEventListener("keypress", e => {
