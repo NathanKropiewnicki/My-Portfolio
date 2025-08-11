@@ -21,16 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(button);
   document.body.appendChild(chatWindow);
 
+  const chatBox = chatWindow.querySelector("#chat-box");
+
+  // Temporary under construction message
   const tempMessage = document.createElement("div");
   tempMessage.classList.add("bot-message");
   tempMessage.innerText = "⚠️ Chatbot is under construction. Please check back later!";
   chatBox.appendChild(tempMessage);
-
-  button.addEventListener("click", () => {
-    chatWindow.style.display =
-      chatWindow.style.display === "flex" ? "none" : "flex";
-  });
-});
 
   // Toggle chat window
   button.addEventListener("click", () => {
@@ -38,10 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
       chatWindow.style.display === "flex" ? "none" : "flex";
   });
 
-  // Handle send button click
+  // Handle sending messages
   const sendButton = chatWindow.querySelector("#send-btn");
   const chatInput = chatWindow.querySelector("#chat-input");
-  const chatBox = chatWindow.querySelector("#chat-box");
 
   const sendMessage = async () => {
     const userMessage = chatInput.value.trim();
@@ -52,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     userMsgEl.className = "user-message";
     userMsgEl.textContent = userMessage;
     chatBox.appendChild(userMsgEl);
-
     chatInput.value = "";
 
     try {
@@ -83,9 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   sendButton.addEventListener("click", sendMessage);
-
-  // Send on Enter key
   chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") sendMessage();
   });
 });
+
