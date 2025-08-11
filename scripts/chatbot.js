@@ -21,6 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(button);
   document.body.appendChild(chatWindow);
 
+  const tempMessage = document.createElement("div");
+  tempMessage.classList.add("bot-message");
+  tempMessage.innerText = "⚠️ Chatbot is under construction. Please check back later!";
+  chatBox.appendChild(tempMessage);
+
+  button.addEventListener("click", () => {
+    chatWindow.style.display =
+      chatWindow.style.display === "flex" ? "none" : "flex";
+  });
+});
+
   // Toggle chat window
   button.addEventListener("click", () => {
     chatWindow.style.display =
