@@ -1,4 +1,4 @@
-const backendURL = "my-portfolio-hys2-hoj7b4olx-nathans-projects-9367ecbd.vercel.app";
+const backendURL = "https://my-portfolio-hys2.vercel.app";
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.createElement("div");
