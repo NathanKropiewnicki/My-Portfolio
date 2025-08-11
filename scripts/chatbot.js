@@ -1,4 +1,4 @@
-const backendURL = "https://YOUR-VERCEL-APP.vercel.app/chat";
+const backendURL = "https://nathankropiewnicki.vercel.app";
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.createElement("div");
