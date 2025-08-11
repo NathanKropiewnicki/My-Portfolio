@@ -1,3 +1,28 @@
+const backendURL = "https://my-portfolio-hys2.vercel.app/api/chat";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.createElement("div");
+  button.id = "chatbot-button";
+  button.innerHTML = "💬";
+
+  const chatWindow = document.createElement("div");
+  chatWindow.id = "chatbot-window";
+  chatWindow.innerHTML = `
+    <div id="chat-box"></div>
+    <div id="chatbot-input">
+      <input id="chat-input" type="text" placeholder="Ask me anything...">
+      <button>Send</button>
+    </div>
+  `;
+
+  document.body.appendChild(button);
+  document.body.appendChild(chatWindow);
+
+  button.addEventListener("click", () => {
+    chatWindow.style.display =
+      chatWindow.style.display === "flex" ? "none" : "flex";
+  });
+
 document.addEventListener("DOMContentLoaded", () => {
     const sendButton = document.getElementById("send-btn");
     const userInput = document.getElementById("user-input");
