@@ -1,4 +1,4 @@
-const backendURL = "https://my-portfolio-git-main-nathans-projects-9367ecbd.vercel.app";
+const backendURL = "https://my-portfolio-hys2.vercel.app/api/chat";
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.createElement("div");
