@@ -1,76 +1,80 @@
 const backendURL = "https://my-portfolio-hys2.vercel.app/api/chat";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Create chatbot button
   const button = document.createElement("div");
   button.id = "chatbot-button";
   button.innerHTML = "💬";
 
+  // Create chatbot window
   const chatWindow = document.createElement("div");
   chatWindow.id = "chatbot-window";
+  chatWindow.style.display = "none";
   chatWindow.innerHTML = `
     <div id="chat-box"></div>
     <div id="chatbot-input">
       <input id="chat-input" type="text" placeholder="Ask me anything...">
-      <button>Send</button>
+      <button id="send-btn">Send</button>
     </div>
   `;
 
   document.body.appendChild(button);
   document.body.appendChild(chatWindow);
 
+  // Toggle chat window
   button.addEventListener("click", () => {
     chatWindow.style.display =
       chatWindow.style.display === "flex" ? "none" : "flex";
   });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const sendButton = document.getElementById("send-btn");
-    const userInput = document.getElementById("user-input");
-    const chatBox = document.getElementById("chat-box");
+  // Handle send button click
+  const sendButton = chatWindow.querySelector("#send-btn");
+  const chatInput = chatWindow.querySelector("#chat-input");
+  const chatBox = chatWindow.querySelector("#chat-box");
 
-    function addMessage(sender, text) {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add(sender);
-        messageElement.textContent = text;
-        chatBox.appendChild(messageElement);
-        chatBox.scrollTop = chatBox.scrollHeight;
+  const sendMessage = async () => {
+    const userMessage = chatInput.value.trim();
+    if (!userMessage) return;
+
+    // Display user's message
+    const userMsgEl = document.createElement("div");
+    userMsgEl.className = "user-message";
+    userMsgEl.textContent = userMessage;
+    chatBox.appendChild(userMsgEl);
+
+    chatInput.value = "";
+
+    try {
+      const response = await fetch(backendURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Display bot's message
+      const botMsgEl = document.createElement("div");
+      botMsgEl.className = "bot-message";
+      botMsgEl.textContent = data.reply || "No response.";
+      chatBox.appendChild(botMsgEl);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    } catch (error) {
+      const errorMsg = document.createElement("div");
+      errorMsg.className = "bot-message error";
+      errorMsg.textContent = "Error connecting to the server.";
+      chatBox.appendChild(errorMsg);
     }
+  };
 
-    async function sendMessage() {
-        const message = userInput.value.trim();
-        if (!message) return;
+  sendButton.addEventListener("click", sendMessage);
 
-        addMessage("user", message);
-        userInput.value = "";
-        addMessage("bot", "Thinking...");
-
-        try {
-            const response = await fetch("https://my-portfolio-hys2.vercel.app/api/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message })
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            chatBox.lastChild.textContent = data.message || "No response from bot.";
-        } catch (error) {
-            console.error(error);
-            chatBox.lastChild.textContent = "Error connecting to server.";
-        }
-    }
-
-    sendButton.addEventListener("click", sendMessage);
-    userInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            sendMessage();
-        }
-    });
+  // Send on Enter key
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
 });
-
-
